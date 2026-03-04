@@ -354,6 +354,10 @@
     .p7 { grid-column: 1 / 5;  grid-row: 3 / 4; }
     .p8 { grid-column: 5 / 9;  grid-row: 3 / 4; }
 
+    a.portfolio-item {
+      text-decoration: none;
+      display: block;
+    }
     .portfolio-item {
       position: relative;
       overflow: hidden;
@@ -695,6 +699,14 @@
       margin-top: 8px;
     }
     .btn-submit:hover { background: var(--forest); }
+    .service-price {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
 
     .form-success {
       display: none;
@@ -706,7 +718,7 @@
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .form-success.show { opacity: 1; transform: translateY(0); }
+    .form-success.show { display: flex; }
     .success-icon {
       width: 58px; height: 58px;
       border: 1.5px solid var(--moss);
@@ -934,6 +946,7 @@
       <li><a href="galleries.html">Galleries</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="services.html">Services</a></li>
+      <li><a href="#book">Book</a></li>
     </ul>
   </nav>
   </header>
@@ -944,7 +957,7 @@
       <p class="hero-eyebrow">Digital Photography</p>
       <h1 class="hero-headline">Moments caught<br>in <em>golden</em> light</h1>
       <p class="hero-sub">Intimate, editorial portraits and celebrations captured with warmth, intention, and a quiet attention to the beautiful ordinary.</p>
-      <a href="services.html" class="btn-primary">Book a Session</a>
+      <a href="#book" class="btn-primary">Book a Session</a>
     </div>
     <div class="hero-image-wrapper">
       <img class="hero-img-placeholder" src="hero.jpg" alt="3:56am Production" />
@@ -978,38 +991,38 @@
       </div>
     </div>
     <div class="portfolio-grid">
-      <div class="portfolio-item p1 reveal">
+      <a href="gallery-portraits.html" class="portfolio-item p1 reveal">
         <img class="portfolio-item-bg" src="p-portraits.jpg" alt="Golden Hour Portraits" />
         <div class="portfolio-overlay"><span class="portfolio-label">Golden Hour Portraits</span></div>
-      </div>
-      <div class="portfolio-item p2 reveal">
+      </a>
+      <a href="gallery-elopements.html" class="portfolio-item p2 reveal">
         <img class="portfolio-item-bg" src="p-elopements.jpg" alt="Elopements" />
         <div class="portfolio-overlay"><span class="portfolio-label">Elopements</span></div>
-      </div>
-      <div class="portfolio-item p3 reveal">
+      </a>
+      <a href="gallery-editorial.html" class="portfolio-item p3 reveal">
         <img class="portfolio-item-bg" src="p-editorial.jpg" alt="Editorial" />
         <div class="portfolio-overlay"><span class="portfolio-label">Editorial</span></div>
-      </div>
-      <div class="portfolio-item p4 reveal">
+      </a>
+      <a href="gallery-families.html" class="portfolio-item p4 reveal">
         <img class="portfolio-item-bg" src="p-families.jpg" alt="Families" />
         <div class="portfolio-overlay"><span class="portfolio-label">Families</span></div>
-      </div>
-      <div class="portfolio-item p5 reveal">
+      </a>
+      <a href="gallery-maternity.html" class="portfolio-item p5 reveal">
         <img class="portfolio-item-bg" src="p-maternity2.jpg" alt="Maternity" />
         <div class="portfolio-overlay"><span class="portfolio-label">Maternity</span></div>
-      </div>
-      <div class="portfolio-item p6 reveal">
+      </a>
+      <a href="gallery-automotive.html" class="portfolio-item p6 reveal">
         <img class="portfolio-item-bg" src="p-automotive.jpg" alt="Automotive" />
         <div class="portfolio-overlay"><span class="portfolio-label">Automotive</span></div>
-      </div>
-      <div class="portfolio-item p7 reveal">
+      </a>
+      <a href="gallery-products.html" class="portfolio-item p7 reveal">
         <img class="portfolio-item-bg" src="p-products.jpg" alt="Products" />
         <div class="portfolio-overlay"><span class="portfolio-label">Products</span></div>
-      </div>
-      <div class="portfolio-item p8 reveal">
+      </a>
+      <a href="gallery-celebrations.html" class="portfolio-item p8 reveal">
         <img class="portfolio-item-bg" src="p-celebrations.jpg" alt="Celebrations" />
         <div class="portfolio-overlay"><span class="portfolio-label">Celebrations</span></div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -1054,20 +1067,23 @@
         <div class="service-number">01</div>
         <h3 class="service-name">Portrait Session</h3>
         <p class="service-desc">An unhurried session crafted for individuals, couples, or small groups. One curated location, unlimited images with signature editing — your private gallery delivered within two weeks.</p>
+        <div class="service-price">Starting at $350</div>
       </div>
       <div class="service-card reveal">
         <div class="service-number">02</div>
         <h3 class="service-name">Elopement Day</h3>
         <p class="service-desc">Full-day intimate coverage from first light to last — ceremony, candid moments, and every tender detail in between. Unlimited images delivered with cinematic color grading.</p>
+        <div class="service-price">Starting at $1,200</div>
       </div>
       <div class="service-card reveal">
         <div class="service-number">03</div>
         <h3 class="service-name">Brand &amp; Editorial</h3>
         <p class="service-desc">Half or full-day creative direction for founders, artists, and visionaries who want imagery that commands attention — custom-edited to match your brand's signature aesthetic.</p>
+        <div class="service-price">Starting at $2,500</div>
       </div>
     </div>
     <div class="services-cta reveal">
-      <a href="services.html" class="btn-services">View All Services &amp; Book</a>
+      <a href="#book" class="btn-services">Book a Session</a>
     </div>
   </section>
 
@@ -1097,6 +1113,104 @@
     </div>
   </section>
 
+  <!-- BOOKING -->
+  <section class="booking" id="book">
+    <div class="booking-inner reveal">
+      <div>
+        <div class="section-label">Book a Session</div>
+        <h2 class="booking-info-heading">Let's create something <em>together</em></h2>
+        <p class="booking-info-sub">Sessions typically book 2–4 weeks in advance. I respond to all inquiries within 48 hours.</p>
+        <div class="booking-details">
+          <div class="booking-detail-item">
+            <div class="booking-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="booking-detail-text">
+              <strong>Location</strong>
+              Based in Austin, TX — available for travel worldwide
+            </div>
+          </div>
+          <div class="booking-detail-item">
+            <div class="booking-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="booking-detail-text">
+              <strong>Email</strong>
+              hello@356amproduction.com
+            </div>
+          </div>
+          <div class="booking-detail-item">
+            <div class="booking-detail-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="booking-detail-text">
+              <strong>Booking Window</strong>
+              Sessions book 2–4 weeks out. Rush availability upon request.
+            </div>
+          </div>
+          <div class="booking-detail-item">
+            <div class="booking-detail-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="booking-detail-text">
+              <strong>Response Time</strong>
+              All inquiries answered within 48 hours.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="booking-form-wrapper">
+        <form id="booking-form" class="booking-form" novalidate>
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" required />
+          </div>
+          <div class="form-group full">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="session-type">Session Type</label>
+            <select id="session-type" name="session-type" required>
+              <option value="">Select a service</option>
+              <option>Portrait Session</option>
+              <option>Elopement Day</option>
+              <option>Brand &amp; Editorial</option>
+              <option>Maternity</option>
+              <option>Family</option>
+              <option>Automotive</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pref-date">Preferred Date</label>
+            <input type="date" id="pref-date" name="pref-date" />
+          </div>
+          <div class="form-group full">
+            <label for="location">Location / Vision</label>
+            <input type="text" id="location" name="location" placeholder="Where or what you have in mind..." />
+          </div>
+          <div class="form-group full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project, your story, your vision..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Inquiry</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 class="success-heading">Message received</h3>
+          <p class="success-text">Thank you for reaching out. I'll be in touch within 48 hours to discuss your vision and bring your session to life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-top">
@@ -1111,6 +1225,7 @@
           <li><a href="galleries.html">Galleries</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="services.html">Services</a></li>
+          <li><a href="#book">Book</a></li>
         </ul>
       </div>
       <div>
@@ -1241,6 +1356,41 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Form submission ──
+    const bookingForm = document.getElementById('booking-form');
+    const formSuccess = document.getElementById('form-success');
+
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', e => {
+        e.preventDefault();
+        let valid = true;
+        bookingForm.querySelectorAll('[required]').forEach(field => {
+          if (!field.value.trim()) {
+            valid = false;
+            field.style.borderBottomColor = '#b94a48';
+            setTimeout(() => { field.style.borderBottomColor = ''; }, 2500);
+          }
+        });
+        if (!valid) return;
+
+        bookingForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        bookingForm.style.opacity   = '0';
+        bookingForm.style.transform = 'translateY(16px)';
+        setTimeout(() => {
+          bookingForm.style.display = 'none';
+          formSuccess.classList.add('show');
+          // Animate in after display:flex kicks in
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              formSuccess.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+              formSuccess.style.opacity   = '1';
+              formSuccess.style.transform = 'translateY(0)';
+            });
+          });
+        }, 420);
+      });
+    }
 
   </script>
 </body>
