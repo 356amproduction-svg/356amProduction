@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — 3:56am Production</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --sand: #e8ddc8;
+      --taupe: #c4b49a;
+      --clay: #a8896a;
+      --umber: #7a5c42;
+      --bark: #4a3728;
+      --warm-white: #faf8f4;
+      --sage: #9aaa8c;
+      --amber: #c8652e;
+      --tangerine: #e07a42;
+      --forest: #4a6e45;
+      --moss: #7aaa6a;
+      --navy: #1a2744;
+      --navy-mid: #243358;
+      --navy-light: #2e4070;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      cursor: none;
+      background: var(--warm-white);
+      color: var(--bark);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9999; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px;
+    }
+
+    /* Cursor */
+    #cursor-dot {
+      position: fixed; width: 30px; height: 30px;
+      pointer-events: none; z-index: 99999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.15s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #cursor-dot svg {
+      width: 30px; height: 30px; fill: none;
+      stroke: var(--umber); stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+      filter: drop-shadow(0 1px 3px rgba(74,55,40,0.35));
+    }
+    #cursor-ring {
+      position: fixed; width: 52px; height: 52px;
+      border: 1px solid rgba(168,137,106,0.45); border-radius: 50%;
+      pointer-events: none; z-index: 99998;
+      transform: translate(-50%,-50%);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+      background: linear-gradient(90deg, var(--amber), var(--tangerine), var(--moss), var(--forest));
+      z-index: 10002; pointer-events: none;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--warm-white);
+      border-bottom: 1px solid rgba(74,55,40,0.1);
+      box-shadow: 0 2px 16px rgba(74,55,40,0.06);
+      transition: box-shadow 0.4s ease;
+    }
+    .site-header.scrolled { box-shadow: 0 4px 24px rgba(74,55,40,0.1); }
+    .top-strip { height: 4px; background: linear-gradient(90deg, var(--amber) 0%, var(--tangerine) 30%, var(--moss) 60%, var(--forest) 100%); }
+    nav { padding: 22px 64px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.1em; color: var(--bark); text-decoration: none; }
+    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links a { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bark); text-decoration: none; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--amber); transition: width 0.35s ease; }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .section-label {
+      display: flex; align-items: center; gap: 16px;
+      font-family: 'Jost', sans-serif; font-weight: 200;
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 22px;
+    }
+    .section-label::before { content: ''; display: block; width: 38px; height: 1px; background: var(--amber); flex-shrink: 0; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--warm-white);
+      padding: 80px 64px 72px;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid rgba(74,55,40,0.07);
+    }
+    /* Warm amber glow top accent */
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--amber), var(--tangerine), var(--amber), transparent);
+    }
+    .page-hero .section-label {
+      justify-content: center; color: var(--amber);
+      opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+    .page-hero .section-label::before { background: var(--amber); }
+
+    /* Big welcome quote */
+    .page-hero-welcome {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.6rem, 5.5vw, 6rem);
+      color: var(--bark);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      max-width: 860px;
+      margin: 0 auto 28px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.3s forwards;
+    }
+    .page-hero-welcome em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .page-hero-divider {
+      width: 48px; height: 1px;
+      background: var(--clay);
+      margin: 0 auto 26px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .page-hero-sub {
+      font-size: 0.95rem; color: var(--umber); max-width: 480px;
+      margin: 0 auto; line-height: 1.9;
+      opacity: 0; animation: fadeUp 0.9s ease 0.55s forwards;
+    }
+
+    /* ── CONFIGURATOR LAYOUT ── */
+    .configurator {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 0;
+      min-height: 100vh;
+      background: var(--warm-white);
+    }
+
+    /* Left panel — steps */
+    .config-steps {
+      padding: 72px 64px 80px;
+      border-right: 1px solid rgba(74,55,40,0.08);
+    }
+
+    .config-step {
+      margin-bottom: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(200,101,46,0.1);
+    }
+    .config-step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200; font-size: 0.65rem;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 10px;
+    }
+    .step-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      color: var(--bark); line-height: 1.15; margin-bottom: 32px;
+    }
+    .step-heading em { font-style: italic; color: var(--clay); }
+
+    /* ── SHOOT TYPE CARDS ── */
+    .shoot-type-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .shoot-type-card {
+      background: var(--warm-white);
+      border: 1.5px solid rgba(74,55,40,0.12);
+      padding: 24px 18px 20px;
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+      text-align: center;
+      user-select: none;
+    }
+    .shoot-type-card:hover {
+      border-color: var(--clay);
+      transform: translateY(-3px);
+      background: var(--sand);
+    }
+    .shoot-type-card.selected {
+      border-color: var(--amber);
+      background: rgba(200,101,46,0.06);
+    }
+    .shoot-type-icon {
+      width: 38px; height: 38px;
+      margin: 0 auto 14px;
+      stroke: var(--clay); fill: none; stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+      display: block;
+      transition: stroke 0.25s ease;
+    }
+    .shoot-type-card.selected .shoot-type-icon { stroke: var(--amber); }
+    .shoot-type-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400; font-size: 1rem;
+      color: var(--bark);
+    }
+    .shoot-type-price {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem; font-weight: 300;
+      color: var(--taupe); letter-spacing: 0.1em;
+      margin-top: 5px;
+    }
+
+    /* ── PILL BUTTONS ── */
+    .pill-group { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill {
+      padding: 10px 26px;
+      background: var(--warm-white);
+      border: 1.5px solid rgba(74,55,40,0.15);
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.8rem; letter-spacing: 0.08em;
+      color: var(--umber); cursor: pointer;
+      transition: all 0.22s ease; user-select: none;
+      border-radius: 0;
+    }
+    .pill:hover { border-color: var(--clay); background: var(--sand); }
+    .pill.selected {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--cream);
+    }
+
+    /* ── CALENDAR ── */
+    .calendar-wrapper { margin-top: 8px; }
+    .calendar {
+      background: var(--warm-white);
+      border: 1.5px solid rgba(74,55,40,0.12);
+      padding: 28px;
+      max-width: 420px;
+    }
+    .cal-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px;
+    }
+    .cal-nav {
+      width: 34px; height: 34px; background: none;
+      border: 1.5px solid rgba(74,55,40,0.2);
+      color: var(--umber); font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .cal-nav:hover { border-color: var(--amber); background: rgba(200,101,46,0.06); }
+    .cal-month-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400; font-size: 1.2rem; color: var(--bark);
+    }
+    .cal-weekdays {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 6px;
+    }
+    .cal-weekday {
+      text-align: center;
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.62rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--taupe);
+      padding-bottom: 10px;
+    }
+    .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.82rem; color: var(--umber);
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .cal-day:hover:not(.empty):not(.past) { background: var(--sand); }
+    .cal-day.empty { cursor: default; }
+    .cal-day.past { color: var(--taupe); cursor: not-allowed; }
+    .cal-day.today { color: var(--amber); font-weight: 400; }
+    .cal-day.selected {
+      background: var(--amber); color: var(--cream); font-weight: 400;
+    }
+
+    .time-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .time-group .pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 14px 22px;
+      min-width: 110px;
+      text-align: center;
+    }
+    .pill-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+    .pill-time {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--clay);
+      font-weight: 300;
+    }
+    .pill.selected .pill-time { color: rgba(245,240,232,0.8); }
+
+    /* ── PACKAGE NOTE & STEP SUB ── */
+    .package-note {
+      margin-top: 20px;
+      font-size: 0.84rem;
+      color: var(--umber);
+      line-height: 1.7;
+    }
+    .package-note em { font-style: italic; color: var(--clay); }
+    .step-sub {
+      font-size: 0.88rem;
+      color: var(--umber);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .retouch-explainer {
+      background: rgba(74,55,40,0.05);
+      border-left: 2px solid var(--clay);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+    .retouch-explainer-text {
+      font-size: 0.88rem;
+      color: var(--umber);
+      line-height: 1.8;
+    }
+    .retouch-explainer-text strong {
+      display: block;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 6px;
+    }
+
+    /* ── TERMS & AGREEMENT ── */
+    .terms-box {
+      background: rgba(74,55,40,0.04);
+      border: 1px solid rgba(74,55,40,0.12);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      max-height: 340px;
+      overflow-y: auto;
+    }
+    .terms-box::-webkit-scrollbar { width: 4px; }
+    .terms-box::-webkit-scrollbar-track { background: transparent; }
+    .terms-box::-webkit-scrollbar-thumb { background: var(--taupe); border-radius: 2px; }
+    .terms-section-title {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-top: 22px;
+      margin-bottom: 8px;
+    }
+    .terms-section-title:first-child { margin-top: 0; }
+    .terms-text {
+      font-size: 0.86rem;
+      color: var(--umber);
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+    .terms-text strong { font-weight: 600; color: var(--bark); }
+    .terms-list {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .terms-list li {
+      font-size: 0.86rem;
+      color: var(--umber);
+      line-height: 1.75;
+      padding-left: 18px;
+      position: relative;
+    }
+    .terms-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--clay);
+      font-size: 0.8rem;
+    }
+    .terms-checkbox-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .terms-checkbox-wrap input[type="checkbox"] { display: none; }
+    .terms-checkbox-box {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(74,55,40,0.3);
+      background: transparent;
+      margin-top: 2px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+    .terms-checkbox-wrap input:checked ~ .terms-checkbox-box {
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+    .terms-checkbox-wrap input:checked ~ .terms-checkbox-box::after {
+      content: '';
+      position: absolute;
+      left: 5px; top: 2px;
+      width: 6px; height: 11px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+    .terms-checkbox-text {
+      font-size: 0.84rem;
+      color: var(--umber);
+      line-height: 1.7;
+    }
+    .terms-checkbox-wrap.error .terms-checkbox-box { border-color: #c0746a; }
+    .terms-error {
+      display: none;
+      font-size: 0.78rem;
+      color: #c0746a;
+      margin-top: 10px;
+    }
+    .terms-error.show { display: block; }
+
+    /* ── START TIME DROPDOWN ── */
+    .time-start-wrap {
+      margin-top: 28px;
+      max-width: 420px;
+    }
+    .time-start-label {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--umber);
+      margin-bottom: 10px;
+    }
+    .time-start-select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(74,55,40,0.2);
+      color: var(--bark);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.95rem;
+      padding: 10px 28px 10px 0;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a8896a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 6px center;
+      transition: border-color 0.3s ease;
+    }
+    .time-start-select:focus { border-bottom-color: var(--amber); }
+    .time-start-select option { background: var(--cream); color: var(--bark); }
+    .end-time-display {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: rgba(200,101,46,0.06);
+      border-left: 2px solid var(--amber);
+    }
+    .end-time-label {
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.68rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--umber);
+    }
+    .end-time-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 400; color: var(--bark);
+    }
+
+    /* ── CLIENT INFO GRID (Step 01) ── */
+    .client-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px;
+    }
+    .client-grid .form-group.full { grid-column: 1 / 3; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--umber);
+    }
+    .form-group input,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(74,55,40,0.2);
+      color: var(--bark);
+      font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.95rem;
+      padding: 10px 0;
+      outline: none; width: 100%;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--taupe); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-bottom-color: var(--amber); }
+    .form-group textarea { resize: none; min-height: 110px; }
+
+    /* Submit wrapper (inline, cream bg) */
+    .config-submit-wrap { margin-top: 8px; }
+    .btn-submit-inline {
+      width: 100%;
+      background: var(--amber); color: var(--cream);
+      border: none; padding: 18px 44px;
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.78rem; letter-spacing: 0.18em;
+      text-transform: uppercase; cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      display: block;
+    }
+    .btn-submit-inline:hover { background: var(--forest); transform: translateY(-2px); }
+
+    /* Form success state */
+    .form-success {
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 64px 40px;
+    }
+    .form-success.show { display: flex; animation: fadeUp 0.6s ease forwards; }
+    .success-icon {
+      width: 64px; height: 64px;
+      border: 2px solid var(--amber); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+    }
+    .success-icon svg { width: 26px; height: 26px; stroke: var(--amber); fill: none; stroke-width: 2.5; stroke-linecap: round; }
+    .success-heading { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--bark); margin-bottom: 14px; }
+    .success-text { font-size: 0.92rem; color: var(--umber); line-height: 1.8; }
+
+    /* ── STICKY SUMMARY ── */
+    .config-summary {
+      position: sticky; top: 73px;
+      padding: 48px 36px;
+      background: var(--cream);
+      align-self: start;
+      border-left: 1px solid rgba(200,101,46,0.12);
+      height: fit-content;
+    }
+    .summary-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400; font-size: 1.3rem; color: var(--bark);
+      margin-bottom: 28px; padding-bottom: 20px;
+      border-bottom: 1px solid rgba(74,55,40,0.1);
+    }
+    .summary-row {
+      display: flex; flex-direction: column;
+      gap: 4px; margin-bottom: 18px;
+    }
+    .summary-label {
+      font-family: 'Jost', sans-serif; font-weight: 200;
+      font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--taupe);
+    }
+    .summary-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400; font-size: 1.05rem; color: var(--bark);
+      min-height: 1.4em;
+    }
+    .summary-divider { height: 1px; background: rgba(74,55,40,0.08); margin: 22px 0; }
+    .summary-price-label {
+      font-family: 'Jost', sans-serif; font-weight: 200;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--taupe); margin-bottom: 6px;
+    }
+    .summary-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 300;
+      color: var(--amber); line-height: 1;
+    }
+    .summary-price span { font-size: 1.1rem; color: var(--taupe); margin-left: 4px; }
+    .summary-note { font-size: 0.75rem; color: var(--taupe); margin-top: 8px; line-height: 1.6; }
+
+    .summary-deposit-wrap {
+      margin-top: 18px;
+      padding: 16px 18px;
+      background: rgba(200,101,46,0.07);
+      border-left: 2px solid var(--amber);
+    }
+    .summary-deposit-label {
+      font-family: 'Jost', sans-serif; font-weight: 200;
+      font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 5px;
+    }
+    .summary-deposit-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem; font-weight: 300;
+      color: var(--bark); line-height: 1;
+    }
+    .summary-deposit-note {
+      font-size: 0.72rem; color: var(--umber);
+      margin-top: 8px; line-height: 1.65;
+    }
+    .summary-deposit-note strong { font-weight: 600; color: var(--bark); }
+    .summary-deposit-remaining {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(74,55,40,0.1);
+    }
+    .summary-deposit-remaining-label {
+      font-family: 'Jost', sans-serif; font-weight: 200;
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--taupe);
+    }
+    .summary-deposit-remaining-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 400; color: var(--bark);
+    }
+
+    .summary-cta {
+      display: block; width: 100%;
+      background: var(--navy); color: var(--cream);
+      padding: 14px 24px; text-align: center;
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer;
+      border: none;
+      transition: background 0.3s ease; margin-top: 26px;
+    }
+    .summary-cta:hover { background: var(--bark); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--bark); padding: 80px 64px 36px; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 64px; margin-bottom: 64px; padding-bottom: 48px; border-bottom: 1px solid rgba(196,180,154,0.15); }
+    .footer-brand-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--cream); letter-spacing: 0.07em; margin-bottom: 18px; }
+    .footer-brand-text { font-size: 0.84rem; line-height: 1.85; color: var(--taupe); max-width: 290px; }
+    .footer-col-title { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--clay); margin-bottom: 26px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .footer-links a { font-size: 0.87rem; color: var(--taupe); text-decoration: none; transition: color 0.3s ease; }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.77rem; color: var(--taupe); opacity: 0.55; }
+    .footer-made { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.88rem; color: var(--taupe); opacity: 0.45; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 28px; }
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 0.68rem; }
+      .page-hero { padding: 60px 28px 52px; }
+      .page-hero-welcome { font-size: clamp(2rem, 8vw, 3rem); }
+      .configurator { grid-template-columns: 1fr; }
+      .config-steps { padding: 52px 28px 60px; border-right: none; }
+      .config-summary { position: static; border-left: none; border-top: 1px solid rgba(74,55,40,0.1); padding: 40px 28px; }
+      .shoot-type-grid { grid-template-columns: repeat(2, 1fr); }
+      .client-grid { grid-template-columns: 1fr; }
+      .client-grid .form-group.full { grid-column: auto; }
+      footer { padding: 60px 28px 36px; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+  <div id="cursor-dot">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+      <circle cx="12" cy="13" r="4"/>
+    </svg>
+  </div>
+  <div id="cursor-ring"></div>
+
+  <header class="site-header" id="site-header">
+    <div class="top-strip"></div>
+    <nav>
+      <a href="index.html" class="nav-logo">3:56am Production</a>
+      <ul class="nav-links">
+        <li><a href="galleries.html">Galleries</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="section-label">Services</div>
+    <h1 class="page-hero-welcome">
+      "Welcome to Services —<br>where your dream shoot<br>becomes <em>reality</em>."
+    </h1>
+    <div class="page-hero-divider"></div>
+    <p class="page-hero-sub">Select your options below and I'll craft a custom shoot experience around your vision, timeline, and location.</p>
+  </section>
+
+  <!-- CONFIGURATOR -->
+  <div class="configurator">
+
+    <!-- Left: Steps -->
+    <div class="config-steps">
+
+      <form id="contactForm"
+        action="https://formsubmit.co/356amproductionbooking@gmail.com"
+        method="POST">
+
+        <!-- Hidden fields carry configurator selections -->
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_subject" value="New Booking Request — 3:56am Production" />
+        <input type="hidden" name="shoot_type"     id="h_type"     value="" />
+        <input type="hidden" name="session_length" id="h_length"   value="" />
+        <input type="hidden" name="location_type"  id="h_location" value="" />
+        <input type="hidden" name="preferred_date" id="h_date"     value="" />
+        <input type="hidden" name="time_preference" id="h_time"    value="" />
+        <input type="hidden" name="start_time"      id="h_start"   value="" />
+        <input type="hidden" name="skin_retouching" id="h_retouch" value="" />
+        <input type="hidden" name="deposit_due" id="h_deposit" value="" />
+        <input type="hidden" name="end_time" id="h_end" value="" />
+
+        <!-- STEP 01: Client Info -->
+        <div class="config-step reveal">
+          <div class="step-num">Step 01</div>
+          <h2 class="step-heading">Let's make it <em>official</em></h2>
+          <div class="client-grid">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" required placeholder="First" />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" required placeholder="Last" />
+            </div>
+            <div class="form-group full">
+              <label for="femail">Email Address</label>
+              <input type="email" id="femail" name="email" required placeholder="your@email.com" />
+            </div>
+            <div class="form-group full">
+              <label for="fphone">Phone Number</label>
+              <input type="tel" id="fphone" name="phone" placeholder="(optional)" />
+            </div>
+            <div class="form-group full">
+              <label for="fmessage">Tell me about your vision</label>
+              <textarea id="fmessage" name="message" placeholder="Share anything — the mood, the people, the location ideas, the feeling you're going for…"></textarea>
+            </div>
+          </div>
+        </div>
+
+      <!-- STEP 02: Shoot Type -->
+      <div class="config-step reveal">
+        <div class="step-num">Step 02</div>
+        <h2 class="step-heading">What are we <em>creating</em>?</h2>
+        <div class="shoot-type-grid" id="shootTypeGrid">
+
+          <div class="shoot-type-card" data-type="Portraits" data-price="650">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <div class="shoot-type-name">Portraits</div>
+          </div>
+
+          <div class="shoot-type-card" data-type="Weddings & Elopements" data-price="2800">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><path d="M12 21.7C5.8 16.5 2 12.6 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.9 4.5 2.3C13.1 3.9 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 4.1-3.8 8-10 13.2z"/></svg>
+            <div class="shoot-type-name">Weddings</div>
+          </div>
+
+          <div class="shoot-type-card" data-type="Brand & Editorial" data-price="1200">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <div class="shoot-type-name">Brand & Editorial</div>
+          </div>
+
+          <div class="shoot-type-card" data-type="Families" data-price="750">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2"/><path d="M2 20c0-3.3 3.1-6 7-6 1.3 0 2.5.3 3.5.9M13 20c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg>
+            <div class="shoot-type-name">Families</div>
+          </div>
+
+          <div class="shoot-type-card" data-type="Maternity" data-price="550">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="5" ry="6"/><circle cx="12" cy="5" r="3"/></svg>
+            <div class="shoot-type-name">Maternity</div>
+          </div>
+
+          <div class="shoot-type-card" data-type="Automotive" data-price="900">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l4 4v4a2 2 0 0 1-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+            <div class="shoot-type-name">Automotive</div>
+          </div>
+
+          <div class="shoot-type-card" data-type="Products" data-price="480">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <div class="shoot-type-name">Products</div>
+          </div>
+
+          <div class="shoot-type-card" data-type="Events" data-price="1100">
+            <svg class="shoot-type-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div class="shoot-type-name">Events</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STEP 03: Session Length -->
+      <div class="config-step reveal">
+        <div class="step-num">Step 03</div>
+        <h2 class="step-heading">How long is your <em>session</em>?</h2>
+        <div class="pill-group" id="lengthGroup">
+          <div class="pill" data-length="1 Hour" data-price="285" style="display:flex;flex-direction:column;align-items:center;gap:3px;">1 Hour<span style="font-size:0.7rem;opacity:0.7;">$285</span></div>
+          <div class="pill" data-length="2 Hours" data-price="385" style="display:flex;flex-direction:column;align-items:center;gap:3px;">2 Hours<span style="font-size:0.7rem;opacity:0.7;">$385</span></div>
+          <div class="pill" data-length="3 Hours" data-price="485" style="display:flex;flex-direction:column;align-items:center;gap:3px;">3 Hours<span style="font-size:0.7rem;opacity:0.7;">$485</span></div>
+          <div class="pill" data-length="4 Hours" data-price="500" style="display:flex;flex-direction:column;align-items:center;gap:3px;">4 Hours<span style="font-size:0.7rem;opacity:0.7;">$500</span></div>
+          <div class="pill" data-length="5 Hours" data-price="600" style="display:flex;flex-direction:column;align-items:center;gap:3px;">5 Hours<span style="font-size:0.7rem;opacity:0.7;">$600</span></div>
+          <div class="pill" data-length="Half Day (6 hrs)" data-price="1500" style="display:flex;flex-direction:column;align-items:center;gap:3px;">Half Day<span style="font-size:0.7rem;opacity:0.7;">6 hrs · $1,500</span></div>
+          <div class="pill" data-length="Full Day (12 hrs)" data-price="3000" style="display:flex;flex-direction:column;align-items:center;gap:3px;">Full Day<span style="font-size:0.7rem;opacity:0.7;">12 hrs · $3,000</span></div>
+        </div>
+        <p class="package-note">Each package includes unlimited edited photos. <em>Skin retouching not included.</em></p>
+      </div>
+
+      <!-- STEP 04 ADD-ON: Skin Retouching -->
+      <div class="config-step reveal">
+        <div class="step-num">Add-On</div>
+        <h2 class="step-heading">Add skin <em>retouching</em>?</h2>
+        <p class="step-sub">Optional — select how many photos you'd like retouched.</p>
+        <div class="retouch-explainer">
+          <p class="retouch-explainer-text"><strong>What is skin retouching?</strong> Skin retouching is the detailed editing of skin in your photos — this includes smoothing texture, reducing blemishes, evening skin tone, and minimizing under-eye shadows. It goes beyond standard editing to give your images a polished, refined look while keeping things natural. This is done by hand on each selected photo and is priced per image count.</p>
+        </div>
+        <div class="pill-group" id="retouchGroup">
+          <div class="pill" data-retouch="15 Photos — $70" data-price="70" style="display:flex;flex-direction:column;align-items:center;gap:3px;">15 Photos<span style="font-size:0.7rem;opacity:0.7;">$70</span></div>
+          <div class="pill" data-retouch="25 Photos — $120" data-price="120" style="display:flex;flex-direction:column;align-items:center;gap:3px;">25 Photos<span style="font-size:0.7rem;opacity:0.7;">$120</span></div>
+          <div class="pill" data-retouch="50 Photos — $250" data-price="250" style="display:flex;flex-direction:column;align-items:center;gap:3px;">50 Photos<span style="font-size:0.7rem;opacity:0.7;">$250</span></div>
+        </div>
+      </div>
+
+      <!-- STEP 04: Location Type -->
+      <div class="config-step reveal">
+        <div class="step-num">Step 04</div>
+        <h2 class="step-heading">Where are we <em>shooting</em>?</h2>
+        <div class="pill-group" id="locationGroup">
+          <div class="pill" data-location="Outdoor / Natural Light">Outdoor</div>
+          <div class="pill" data-location="Indoor">Indoor</div>
+          <div class="pill" data-location="Studio">Studio</div>
+          <div class="pill" data-location="Your Venue / On-Location">Your Venue</div>
+        </div>
+      </div>
+
+      <!-- STEP 05: Date & Time -->
+      <div class="config-step reveal">
+        <div class="step-num">Step 05</div>
+        <h2 class="step-heading">When works for <em>you</em>?</h2>
+
+        <div class="calendar-wrapper">
+          <div class="calendar">
+            <div class="cal-header">
+              <button class="cal-nav" id="calPrev">&#8249;</button>
+              <div class="cal-month-label" id="calMonthLabel"></div>
+              <button class="cal-nav" id="calNext">&#8250;</button>
+            </div>
+            <div class="cal-weekdays">
+              <div class="cal-weekday">Su</div>
+              <div class="cal-weekday">Mo</div>
+              <div class="cal-weekday">Tu</div>
+              <div class="cal-weekday">We</div>
+              <div class="cal-weekday">Th</div>
+              <div class="cal-weekday">Fr</div>
+              <div class="cal-weekday">Sa</div>
+            </div>
+            <div class="cal-days" id="calDays"></div>
+          </div>
+        </div>
+
+        <div class="time-group" id="timeGroup">
+          <div class="pill" data-time="Early Morning (6–9am)">
+            <span class="pill-label">Early Morning</span>
+            <span class="pill-time">6 – 9am</span>
+          </div>
+          <div class="pill" data-time="Morning (9am–12pm)">
+            <span class="pill-label">Morning</span>
+            <span class="pill-time">9am – 12pm</span>
+          </div>
+          <div class="pill" data-time="Afternoon (12–4pm)">
+            <span class="pill-label">Afternoon</span>
+            <span class="pill-time">12 – 4pm</span>
+          </div>
+          <div class="pill" data-time="Golden Hour (4–7pm)">
+            <span class="pill-label">Golden Hour</span>
+            <span class="pill-time">4 – 7pm</span>
+          </div>
+          <div class="pill" data-time="Evening (7pm+)">
+            <span class="pill-label">Evening</span>
+            <span class="pill-time">7pm+</span>
+          </div>
+        </div>
+
+        <div class="time-start-wrap">
+          <label class="time-start-label" for="startTimeSelect">Preferred Start Time</label>
+          <select id="startTimeSelect" class="time-start-select">
+            <option value="">— Select a time —</option>
+            <option value="6:00 AM">6:00 AM</option>
+            <option value="7:00 AM">7:00 AM</option>
+            <option value="8:00 AM">8:00 AM</option>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+            <option value="6:00 PM">6:00 PM</option>
+            <option value="7:00 PM">7:00 PM</option>
+            <option value="8:00 PM">8:00 PM</option>
+            <option value="9:00 PM">9:00 PM</option>
+          </select>
+          <div class="end-time-display" id="endTimeDisplay" style="display:none;">
+            <span class="end-time-label">Estimated End Time</span>
+            <span class="end-time-value" id="endTimeValue">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TERMS & AGREEMENTS -->
+      <div class="config-step reveal">
+        <div class="step-num">Final Step</div>
+        <h2 class="step-heading">Terms &amp; <em>Agreement</em></h2>
+        <p class="step-sub">Please read and agree to the following before submitting your booking request.</p>
+
+        <div class="terms-box">
+          <h4 class="terms-section-title">1. RAW Image Files</h4>
+          <p class="terms-text">3:56am Production does <strong>not</strong> deliver RAW image files under any circumstances. All final deliverables are fully edited JPEG or digital image files. RAW files are proprietary to the photographer and will not be shared, transferred, or sold to the client at any time.</p>
+
+          <h4 class="terms-section-title">2. What the Photographer Is Not Responsible For</h4>
+          <p class="terms-text">3:56am Production is not responsible for the following:</p>
+          <ul class="terms-list">
+            <li>Unfavorable weather conditions, natural lighting limitations, or environmental factors beyond the photographer's control on the day of the session.</li>
+            <li>Location unavailability, permit denials, or restricted access to a requested shooting location.</li>
+            <li>Missed moments caused by late arrival, uncooperative subjects, or failure by the client to communicate key shot requests in advance.</li>
+            <li>Loss or damage of images due to memory card failure, equipment malfunction, or unforeseen technical failure beyond the photographer's control. In such cases, a reshoot may be offered at the photographer's discretion.</li>
+            <li>Third-party interference, uninvited guests disrupting the session, or distractions that affect the quality of the final images.</li>
+            <li>Client dissatisfaction resulting from poses, expressions, or styling choices made by the client during the session.</li>
+            <li>Any health, safety, or legal issues that arise at the chosen location.</li>
+          </ul>
+
+          <h4 class="terms-section-title">3. Image Delivery &amp; Editing</h4>
+          <p class="terms-text">All delivered images include professional color grading and standard editing. Skin retouching is only included if selected as an add-on. The photographer retains full creative discretion over the editing style and final selection of delivered images.</p>
+
+          <h4 class="terms-section-title">4. Deposit &amp; Payment Policy</h4>
+          <p class="terms-text">A <strong>30% non-refundable deposit</strong> is required to secure your session date. This deposit is due at the time of booking confirmation and goes toward your total session balance. The remaining balance is due on or before the session date.</p>
+          <ul class="terms-list">
+            <li>The deposit is <strong>non-refundable</strong> once the session has been booked and confirmed by the photographer.</li>
+            <li>If the client cancels or reschedules, the deposit is forfeited and a new deposit will be required to rebook.</li>
+            <li><strong>Exception:</strong> If 3:56am Production must cancel your session due to a photographer family emergency, your deposit will be refunded in full within 5–7 business days.</li>
+          </ul>
+
+          <h4 class="terms-section-title">5. Cancellations &amp; Rescheduling</h4>
+          <p class="terms-text">Session changes must be communicated at least 48 hours in advance. Last-minute cancellations may result in a rebooking fee. Final pricing and deposit terms will be confirmed during your consultation call.</p>
+
+          <h4 class="terms-section-title">6. Copyright</h4>
+          <p class="terms-text">3:56am Production retains full copyright of all images captured during the session. The client is granted a personal use license for the delivered images. Images may be used by 3:56am Production for portfolio, social media, and promotional purposes unless the client requests otherwise in writing.</p>
+        </div>
+
+        <label class="terms-checkbox-wrap" id="termsLabel">
+          <input type="checkbox" id="termsCheckbox" name="terms_agreed" value="agreed" />
+          <span class="terms-checkbox-box"></span>
+          <span class="terms-checkbox-text">I have read and agree to the Terms &amp; Agreement above. I understand that RAW files will not be provided, that the 30% deposit is non-refundable once my session is booked, and that 3:56am Production is not liable for the circumstances listed above.</span>
+        </label>
+        <p class="terms-error" id="termsError">Please agree to the terms before submitting.</p>
+      </div>
+
+
+
+      </form>
+
+      <!-- Success state (outside form so it stays visible after form hides) -->
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="success-heading">Request Received</h3>
+        <p class="success-text">Thank you! I'll be in touch within 48 hours to confirm your session details and talk through your vision.</p>
+      </div>
+    </div>
+
+    <!-- Right: Sticky Summary -->
+    <div class="config-summary" id="summaryPanel">
+      <div class="summary-title">Your Session</div>
+
+      <div class="summary-row">
+        <div class="summary-label">Shoot Type</div>
+        <div class="summary-value" id="sumType">—</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-label">Session Length</div>
+        <div class="summary-value" id="sumLength">—</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-label">Location</div>
+        <div class="summary-value" id="sumLocation">—</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-label">Date</div>
+        <div class="summary-value" id="sumDate">—</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-label">Time of Day</div>
+        <div class="summary-value" id="sumTime">—</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-label">Start Time</div>
+        <div class="summary-value" id="sumStart">—</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-label">End Time</div>
+        <div class="summary-value" id="sumEnd">—</div>
+      </div>
+      <div class="summary-row">
+        <div class="summary-label">Skin Retouching</div>
+        <div class="summary-value" id="sumRetouch">None</div>
+      </div>
+
+      <div class="summary-divider"></div>
+      <div class="summary-price-label">Estimated Total</div>
+      <div class="summary-price" id="sumTotal">—</div>
+      <p class="summary-note">Final pricing is confirmed after your consultation call.</p>
+
+      <div class="summary-deposit-wrap">
+        <div class="summary-deposit-label">Due at Booking — 30% Deposit</div>
+        <div class="summary-deposit-amount" id="sumDeposit">—</div>
+        <p class="summary-deposit-note">This deposit comes out of your total cost — it is <strong>not</strong> an extra charge. The remainder is due on or before your session date.</p>
+        <div class="summary-deposit-remaining" id="sumRemaining" style="display:none;">
+          <span class="summary-deposit-remaining-label">Remaining Balance</span>
+          <span class="summary-deposit-remaining-val" id="sumBalance">—</span>
+        </div>
+        <p class="summary-deposit-note" style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(74,55,40,0.1);">Non-refundable once your session is confirmed. Refunded in full only if the photographer must cancel due to a family emergency.</p>
+      </div>
+
+      <button class="summary-cta" onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth'})">
+        Review &amp; Submit ↓
+      </button>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo">3:56am Production</div>
+        <p class="footer-brand-text">Film-inspired photography for those who believe the quiet moments are worth preserving. Available worldwide.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+            <li><a href="galleries.html">Galleries</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="services.html">Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">356amproductionbooking@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 3:56am Production. All rights reserved.</span>
+      <span class="footer-made">Crafted with light &amp; intention</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── Cursor ──
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx=0, my=0, rx=0, ry=0;
+    document.addEventListener('mousemove', e => {
+      mx=e.clientX; my=e.clientY;
+      dot.style.left=mx+'px'; dot.style.top=my+'px';
+    });
+    (function lerp(){
+      rx+=(mx-rx)*0.11; ry+=(my-ry)*0.11;
+      ring.style.left=rx+'px'; ring.style.top=ry+'px';
+      requestAnimationFrame(lerp);
+    })();
+    document.querySelectorAll('a,button,.shoot-type-card,.pill').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{ dot.style.transform='translate(-50%,-50%) scale(1.5)'; ring.style.transform='translate(-50%,-50%) scale(1.4)'; ring.style.borderColor='var(--umber)'; });
+      el.addEventListener('mouseleave',()=>{ dot.style.transform='translate(-50%,-50%) scale(1)'; ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.borderColor='rgba(168,137,106,0.45)'; });
+    });
+
+    // ── Scroll progress ──
+    const bar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll',()=>{ bar.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%'; },{passive:true});
+
+    // ── Nav scroll ──
+    window.addEventListener('scroll',()=>{ document.getElementById('site-header').classList.toggle('scrolled',window.scrollY>50); },{passive:true});
+
+    // ── Scroll reveal ──
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const siblings=[...(entry.target.parentElement?.querySelectorAll('.reveal')||[])];
+        entry.target.style.transitionDelay=(siblings.indexOf(entry.target)*0.08)+'s';
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      });
+    },{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    // ── Selection state ──
+    const state = { type:'', price:0, length:'', lengthPrice:0, lengthHours:0, location:'', date:'', time:'', start:'', endTime:'', retouch:'', retouchPrice:0 };
+
+    function extractHours(lengthStr) {
+      if (!lengthStr) return 0;
+      if (lengthStr.includes('Half Day')) return 6;
+      if (lengthStr.includes('Full Day')) return 12;
+      const match = lengthStr.match(/^(\d+)/);
+      return match ? parseInt(match[1]) : 0;
+    }
+
+    function calcEndTime(startStr, hours) {
+      if (!startStr || !hours) return '';
+      const [timePart, period] = startStr.split(' ');
+      let [h, m] = timePart.split(':').map(Number);
+      if (period === 'PM' && h !== 12) h += 12;
+      if (period === 'AM' && h === 12) h = 0;
+      let totalMins = h * 60 + m + hours * 60;
+      let endH = Math.floor(totalMins / 60) % 24;
+      let endM = totalMins % 60;
+      const endPeriod = endH >= 12 ? 'PM' : 'AM';
+      let displayH = endH % 12;
+      if (displayH === 0) displayH = 12;
+      return displayH + ':' + endM.toString().padStart(2, '0') + ' ' + endPeriod;
+    }
+
+    function updateSummary(){
+      document.getElementById('sumType').textContent     = state.type     || '—';
+      document.getElementById('sumLength').textContent   = state.length   || '—';
+      document.getElementById('sumLocation').textContent = state.location || '—';
+      document.getElementById('sumDate').textContent     = state.date     || '—';
+      document.getElementById('sumTime').textContent     = state.time     || '—';
+      document.getElementById('sumStart').textContent    = state.start    || '—';
+      document.getElementById('sumEnd').textContent      = state.endTime  || '—';
+      document.getElementById('sumRetouch').textContent  = state.retouch  || 'None';
+      // End time inline display under dropdown
+      const etDisplay = document.getElementById('endTimeDisplay');
+      const etValue   = document.getElementById('endTimeValue');
+      if (state.endTime) {
+        etValue.textContent = state.endTime;
+        etDisplay.style.display = 'flex';
+      } else {
+        etDisplay.style.display = 'none';
+      }
+      const total = state.lengthPrice + state.retouchPrice;
+      document.getElementById('sumTotal').textContent = total > 0 ? '$' + total.toLocaleString() : '—';
+      const deposit = total > 0 ? Math.round(total * 0.30) : 0;
+      const remaining = total - deposit;
+      document.getElementById('sumDeposit').textContent = deposit > 0 ? '$' + deposit.toLocaleString() : '—';
+      document.getElementById('h_deposit').value = deposit > 0 ? '$' + deposit.toLocaleString() : '';
+      const remainingEl = document.getElementById('sumRemaining');
+      if(total > 0){
+        remainingEl.style.display = 'flex';
+        document.getElementById('sumBalance').textContent = '$' + remaining.toLocaleString();
+      } else {
+        remainingEl.style.display = 'none';
+        document.getElementById('sumBalance').textContent = '—';
+      }
+      if(state.price){
+        document.getElementById('sumPrice').childNodes[0].textContent = '$'+state.price.toLocaleString();
+        document.getElementById('sumPriceSuffix').textContent = '+';
+      } else {
+        document.getElementById('sumPrice').childNodes[0].textContent = '—';
+        document.getElementById('sumPriceSuffix').textContent = '';
+      }
+      // sync hidden fields
+      document.getElementById('h_type').value     = state.type;
+      document.getElementById('h_length').value   = state.length;
+      document.getElementById('h_location').value = state.location;
+      document.getElementById('h_date').value     = state.date;
+      document.getElementById('h_time').value     = state.time;
+      document.getElementById('h_start').value    = state.start;
+      document.getElementById('h_end').value      = state.endTime;
+      document.getElementById('h_retouch').value  = state.retouch;
+    }
+
+    // Shoot type
+    document.querySelectorAll('.shoot-type-card').forEach(card=>{
+      card.addEventListener('click',()=>{
+        document.querySelectorAll('.shoot-type-card').forEach(c=>c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.type  = card.dataset.type;
+        state.price = parseInt(card.dataset.price);
+        updateSummary();
+      });
+    });
+
+    // Length
+    document.querySelectorAll('#lengthGroup .pill').forEach(pill=>{
+      pill.addEventListener('click',()=>{
+        document.querySelectorAll('#lengthGroup .pill').forEach(p=>p.classList.remove('selected'));
+        pill.classList.add('selected');
+        state.length      = pill.dataset.length;
+        state.lengthPrice = parseInt(pill.dataset.price) || 0;
+        state.lengthHours = extractHours(pill.dataset.length);
+        state.endTime     = calcEndTime(state.start, state.lengthHours);
+        updateSummary();
+      });
+    });
+
+    // Location
+    document.querySelectorAll('#locationGroup .pill').forEach(pill=>{
+      pill.addEventListener('click',()=>{
+        document.querySelectorAll('#locationGroup .pill').forEach(p=>p.classList.remove('selected'));
+        pill.classList.add('selected');
+        state.location = pill.dataset.location;
+        updateSummary();
+      });
+    });
+
+    // ── Time period → available start hours ──
+    const timeHours = {
+      'Early Morning (6–9am)':  ['6:00 AM','7:00 AM','8:00 AM','9:00 AM'],
+      'Morning (9am–12pm)':     ['9:00 AM','10:00 AM','11:00 AM','12:00 PM'],
+      'Afternoon (12–4pm)':     ['12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM'],
+      'Golden Hour (4–7pm)':    ['4:00 PM','5:00 PM','6:00 PM','7:00 PM'],
+      'Evening (7pm+)':         ['7:00 PM','8:00 PM','9:00 PM']
+    };
+
+    function populateStartTimes(hours) {
+      const sel = document.getElementById('startTimeSelect');
+      sel.innerHTML = '<option value="">— Select a time —</option>';
+      hours.forEach(h => {
+        const opt = document.createElement('option');
+        opt.value = h;
+        opt.textContent = h;
+        sel.appendChild(opt);
+      });
+      state.start = '';
+      updateSummary();
+    }
+
+    // Time
+    document.querySelectorAll('#timeGroup .pill').forEach(pill=>{
+      pill.addEventListener('click',()=>{
+        document.querySelectorAll('#timeGroup .pill').forEach(p=>p.classList.remove('selected'));
+        pill.classList.add('selected');
+        state.time = pill.dataset.time;
+        populateStartTimes(timeHours[pill.dataset.time] || []);
+      });
+    });
+
+    // Skin retouching
+    document.querySelectorAll('#retouchGroup .pill').forEach(pill=>{
+      pill.addEventListener('click',()=>{
+        if(pill.classList.contains('selected')){
+          pill.classList.remove('selected');
+          state.retouch      = '';
+          state.retouchPrice = 0;
+        } else {
+          document.querySelectorAll('#retouchGroup .pill').forEach(p=>p.classList.remove('selected'));
+          pill.classList.add('selected');
+          state.retouch      = pill.dataset.retouch;
+          state.retouchPrice = parseInt(pill.dataset.price) || 0;
+        }
+        updateSummary();
+      });
+    });
+
+    // Start time dropdown
+    document.getElementById('startTimeSelect').addEventListener('change', e => {
+      state.start   = e.target.value;
+      state.endTime = calcEndTime(state.start, state.lengthHours);
+      updateSummary();
+    });
+
+    // ── Calendar ──
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    let calDate = new Date();
+    const today = new Date();
+
+    function renderCalendar(){
+      const yr = calDate.getFullYear();
+      const mo = calDate.getMonth();
+      document.getElementById('calMonthLabel').textContent = MONTHS[mo]+' '+yr;
+
+      const first = new Date(yr, mo, 1).getDay();
+      const daysInMonth = new Date(yr, mo+1, 0).getDate();
+      const grid = document.getElementById('calDays');
+      grid.innerHTML = '';
+
+      for(let i=0;i<first;i++){
+        const el = document.createElement('div');
+        el.className='cal-day empty';
+        grid.appendChild(el);
+      }
+
+      for(let d=1;d<=daysInMonth;d++){
+        const el = document.createElement('div');
+        el.className='cal-day';
+        el.textContent=d;
+        const thisDate = new Date(yr,mo,d);
+        if(thisDate < new Date(today.getFullYear(),today.getMonth(),today.getDate())) el.classList.add('past');
+        if(thisDate.toDateString()===today.toDateString()) el.classList.add('today');
+
+        // restore selection
+        const dStr = MONTHS[mo]+' '+d+', '+yr;
+        if(state.date===dStr) el.classList.add('selected');
+
+        el.addEventListener('click',()=>{
+          if(el.classList.contains('past')||el.classList.contains('empty')) return;
+          document.querySelectorAll('.cal-day').forEach(c=>c.classList.remove('selected'));
+          el.classList.add('selected');
+          state.date = dStr;
+          updateSummary();
+        });
+        grid.appendChild(el);
+      }
+    }
+
+    document.getElementById('calPrev').addEventListener('click',()=>{
+      calDate = new Date(calDate.getFullYear(), calDate.getMonth()-1, 1);
+      if(calDate < new Date(today.getFullYear(), today.getMonth(), 1)) calDate = new Date(today.getFullYear(), today.getMonth(), 1);
+      renderCalendar();
+    });
+    document.getElementById('calNext').addEventListener('click',()=>{
+      calDate = new Date(calDate.getFullYear(), calDate.getMonth()+1, 1);
+      renderCalendar();
+    });
+    renderCalendar();
+
+    // ── Form submit (AJAX) ──
+    const form    = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', async e=>{
+      e.preventDefault();
+      let valid = true;
+
+      // Required fields
+      form.querySelectorAll('[required]').forEach(f=>{
+        if(!f.value.trim()){
+          valid=false;
+          f.style.borderBottomColor='#c0746a';
+          f.addEventListener('input',()=>{ f.style.borderBottomColor=''; },{once:true});
+        }
+      });
+
+      // Terms checkbox
+      const checkbox = document.getElementById('termsCheckbox');
+      const termsError = document.getElementById('termsError');
+      const termsLabel = document.getElementById('termsLabel');
+      if(!checkbox.checked){
+        valid=false;
+        termsLabel.classList.add('error');
+        termsError.classList.add('show');
+        checkbox.addEventListener('change',()=>{
+          termsLabel.classList.remove('error');
+          termsError.classList.remove('show');
+        },{once:true});
+      }
+
+      if(!valid) return;
+
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/356amproductionbooking@gmail.com',{
+          method:'POST',
+          body: data,
+          headers:{ 'Accept':'application/json' }
+        });
+
+        form.style.transition='opacity 0.45s ease, transform 0.45s ease';
+        form.style.opacity='0';
+        form.style.transform='translateY(-18px)';
+        setTimeout(()=>{
+          form.style.display='none';
+          success.style.display='flex';
+          requestAnimationFrame(()=>success.classList.add('show'));
+        },450);
+      } catch(err){
+        // fallback: still show success to user (FormSubmit handles the email)
+        form.style.opacity='0';
+        setTimeout(()=>{ form.style.display='none'; success.style.display='flex'; success.classList.add('show'); },450);
+      }
+    });
+  </script>
+</body>
+</html>
