@@ -281,6 +281,8 @@
       grid-template-columns: 1fr 1fr;
       gap: 88px;
       align-items: center;
+      position: relative;
+      overflow: hidden;
     }
     .about-image {
       aspect-ratio: 4/5;
@@ -318,6 +320,15 @@
       color: var(--forest);
       margin-top: 38px;
       letter-spacing: 0.02em;
+    }
+    .about-image, .about-content { position: relative; z-index: 2; }
+    .grass-canvas {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 220px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.9;
     }
 
     /* ── PORTFOLIO ── */
@@ -978,6 +989,7 @@
       <p class="about-text">My approach is documentary at heart, editorial in frame. I believe the most beautiful photographs don't ask you to perform — they ask you to simply be.</p>
       <div class="about-signature">Faith</div>
     </div>
+    <canvas class="grass-canvas" id="grass-canvas"></canvas>
   </section>
 
   <!-- PORTFOLIO -->
@@ -1256,6 +1268,100 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── GRASS ANIMATION ── */
+    (function() {
+      const canvas = document.getElementById('grass-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let W, H;
+      const blades = [];
+
+      function resize() {
+        W = canvas.offsetWidth;
+        H = canvas.offsetHeight;
+        canvas.width = W * devicePixelRatio;
+        canvas.height = H * devicePixelRatio;
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+      }
+
+      function randomBetween(a, b) { return a + Math.random() * (b - a); }
+
+      function makeBlade() {
+        const isWarm = Math.random() > 0.55;
+        const alpha = randomBetween(0.12, 0.28);
+        let color;
+        if (isWarm) {
+          // wheat / golden tones to complement the bark background
+          const r = Math.floor(randomBetween(180, 210));
+          const g = Math.floor(randomBetween(155, 175));
+          const b = Math.floor(randomBetween(90, 120));
+          color = `rgba(${r},${g},${b},${alpha})`;
+        } else {
+          // sage / moss greens
+          const r = Math.floor(randomBetween(100, 130));
+          const g = Math.floor(randomBetween(140, 175));
+          const b = Math.floor(randomBetween(85, 115));
+          color = `rgba(${r},${g},${b},${alpha})`;
+        }
+        return {
+          x:         randomBetween(0, W),
+          height:    randomBetween(48, H * 0.88),
+          width:     randomBetween(1.2, 2.6),
+          lean:      randomBetween(-0.35, 0.35),  // natural base lean
+          phase:     randomBetween(0, Math.PI * 2),
+          speed:     randomBetween(0.28, 0.62),
+          amplitude: randomBetween(0.06, 0.16),
+          color
+        };
+      }
+
+      function init() {
+        resize();
+        blades.length = 0;
+        // ~1 blade every 7px for lush density
+        const count = Math.floor(W / 7);
+        for (let i = 0; i < count; i++) blades.push(makeBlade());
+      }
+
+      function drawBlade(b, time) {
+        const sway = Math.sin(time * b.speed + b.phase) * b.amplitude;
+        const angle = b.lean + sway;
+
+        // cubic bezier: root at bottom, tip curves naturally
+        const rootX = b.x;
+        const rootY = H;
+        const tipX  = rootX + Math.sin(angle) * b.height;
+        const tipY  = rootY - b.height * Math.cos(angle);
+
+        // control points give a natural bend — stiffer at root, freer at tip
+        const cp1x = rootX + Math.sin(angle * 0.3) * b.height * 0.35;
+        const cp1y = rootY - b.height * 0.38;
+        const cp2x = tipX  - Math.sin(angle * 0.6) * b.height * 0.18;
+        const cp2y = tipY  + b.height * 0.28;
+
+        ctx.beginPath();
+        ctx.moveTo(rootX, rootY);
+        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, tipX, tipY);
+        ctx.strokeStyle = b.color;
+        ctx.lineWidth   = b.width;
+        ctx.lineCap     = 'round';
+        ctx.stroke();
+      }
+
+      function animate(ts) {
+        const time = ts * 0.001;
+        ctx.clearRect(0, 0, W, H);
+        // draw back-layer blades first (shorter, more transparent) for depth
+        blades.forEach(b => drawBlade(b, time));
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', init);
+      init();
+      requestAnimationFrame(animate);
+    })();
 
   </script>
 </body>
