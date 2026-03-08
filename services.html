@@ -1397,28 +1397,38 @@
 
       if(!valid) return;
 
+      // Build booking object for admin dashboard
+      function gv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+      const booking={
+        id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+        firstName:gv('fname'),lastName:gv('lname'),
+        email:gv('femail'),phone:gv('fphone'),
+        sessionType:gv('h_type')||'Not specified',
+        sessionLength:gv('h_length'),locationType:gv('h_location'),
+        preferredDate:gv('h_date'),timePreference:gv('h_time'),
+        startTime:gv('h_start'),endTime:gv('h_end'),
+        skinRetouching:gv('h_retouch'),depositDue:gv('h_deposit'),
+        message:gv('fmessage'),
+        status:'new_request',
+        submittedAt:new Date().toISOString(),notes:''
+      };
+      const enc=btoa(unescape(encodeURIComponent(JSON.stringify(booking))));
+      window.open('https://356amproduction-svg.github.io/356am-admin-dashboard/?booking='+enc,'_blank');
+
       const data = new FormData(form);
 
       try {
-        const res = await fetch('https://formspree.io/f/xreyzydq',{
-          method:'POST',
-          body: data,
-          headers:{ 'Accept':'application/json' }
-        });
+        await fetch('https://formspree.io/f/xreyzydq',{method:'POST',body:data,headers:{'Accept':'application/json'}});
+      } catch(err){}
 
-        form.style.transition='opacity 0.45s ease, transform 0.45s ease';
-        form.style.opacity='0';
-        form.style.transform='translateY(-18px)';
-        setTimeout(()=>{
-          form.style.display='none';
-          success.style.display='flex';
-          requestAnimationFrame(()=>success.classList.add('show'));
-        },450);
-      } catch(err){
-        // fallback: still show success to user (FormSubmit handles the email)
-        form.style.opacity='0';
-        setTimeout(()=>{ form.style.display='none'; success.style.display='flex'; success.classList.add('show'); },450);
-      }
+      form.style.transition='opacity 0.45s ease, transform 0.45s ease';
+      form.style.opacity='0';
+      form.style.transform='translateY(-18px)';
+      setTimeout(()=>{
+        form.style.display='none';
+        success.style.display='flex';
+        requestAnimationFrame(()=>success.classList.add('show'));
+      },450);
     });
   </script>
 </body>
