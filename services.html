@@ -1397,7 +1397,7 @@
 
       if(!valid) return;
 
-      // Build booking object for admin dashboard
+      // Build booking object
       function gv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
       const booking={
         id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
@@ -1412,15 +1412,20 @@
         status:'new_request',
         submittedAt:new Date().toISOString(),notes:''
       };
-      const enc=btoa(unescape(encodeURIComponent(JSON.stringify(booking))));
-      window.open('https://356amproduction-svg.github.io/356am-admin-dashboard/?booking='+enc,'_blank');
 
-      const data = new FormData(form);
-
+      // Save directly to shared localStorage (same GitHub Pages origin as admin dashboard)
       try {
-        await fetch('https://formspree.io/f/xreyzydq',{method:'POST',body:data,headers:{'Accept':'application/json'}});
-      } catch(err){}
+        const existing=JSON.parse(localStorage.getItem('356am_bookings')||'[]');
+        existing.unshift(booking);
+        localStorage.setItem('356am_bookings',JSON.stringify(existing));
+      } catch(e){}
 
+      // Send Formspree email in background — client stays on this page
+      fetch('https://formspree.io/f/xreyzydq',{
+        method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}
+      }).catch(()=>{});
+
+      // Show success message — no redirect
       form.style.transition='opacity 0.45s ease, transform 0.45s ease';
       form.style.opacity='0';
       form.style.transform='translateY(-18px)';
