@@ -1401,24 +1401,39 @@
       function gv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
       const booking={
         id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
-        firstName:gv('fname'),lastName:gv('lname'),
-        email:gv('femail'),phone:gv('fphone'),
+        firstName:gv('fname'),
+        lastName:gv('lname'),
+        email:gv('femail'),
+        phone:gv('fphone'),
         sessionType:gv('h_type')||'Not specified',
-        sessionLength:gv('h_length'),locationType:gv('h_location'),
-        preferredDate:gv('h_date'),timePreference:gv('h_time'),
-        startTime:gv('h_start'),endTime:gv('h_end'),
-        skinRetouching:gv('h_retouch'),depositDue:gv('h_deposit'),
+        sessionLength:gv('h_length'),
+        locationType:gv('h_location'),
+        preferredDate:gv('h_date'),
+        timePreference:gv('h_time'),
+        startTime:gv('h_start'),
+        endTime:gv('h_end'),
+        skinRetouching:gv('h_retouch'),
+        depositDue:gv('h_deposit'),
         message:gv('fmessage'),
+        termsAgreed: checkbox.checked ? 'agreed' : '',
         status:'new_request',
-        submittedAt:new Date().toISOString(),notes:''
+        submittedAt:new Date().toISOString(),
+        notes:''
       };
+
+      // Debug: log booking object to console
+      console.log('[3:56am] Booking submitted:', booking);
+      console.log('[3:56am] Field check — sessionType:', booking.sessionType, '| sessionLength:', booking.sessionLength, '| preferredDate:', booking.preferredDate);
 
       // Save directly to shared localStorage (same GitHub Pages origin as admin dashboard)
       try {
         const existing=JSON.parse(localStorage.getItem('356am_bookings')||'[]');
         existing.unshift(booking);
         localStorage.setItem('356am_bookings',JSON.stringify(existing));
-      } catch(e){}
+        console.log('[3:56am] Saved to localStorage. Total bookings:', existing.length);
+      } catch(e){
+        console.error('[3:56am] localStorage save failed:', e);
+      }
 
       // Send Formspree email in background — client stays on this page
       fetch('https://formspree.io/f/xreyzydq',{
