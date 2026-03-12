@@ -112,13 +112,17 @@
       align-items: center;
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      color: var(--bark);
       text-decoration: none;
+      display: flex;
+      align-items: center;
     }
+    .nav-logo-img {
+      height: 54px;
+      width: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .nav-logo-img:hover { transform: scale(1.05); }
     .nav-links { display: flex; gap: 44px; list-style: none; }
     .nav-links a {
       font-family: 'Jost', sans-serif;
@@ -437,7 +441,7 @@
   <header class="site-header" id="site-header">
     <div class="top-strip"></div>
     <nav>
-      <a href="index.html" class="nav-logo">3:56am Production</a>
+      <a href="index.html" class="nav-logo"><img src="logo.png" alt="3:56am Production" class="nav-logo-img"></a>
       <ul class="nav-links">
         <li><a href="index.html#portfolio">Work</a></li>
         <li><a href="galleries.html" class="active">Galleries</a></li>
