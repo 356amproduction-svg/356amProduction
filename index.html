@@ -289,11 +289,23 @@
       position: relative;
     }
 
+    /* blob keyframes — morphs between two organic shapes */
+    @keyframes blobMorph {
+      0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+      25%       { border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; }
+      50%       { border-radius: 55% 45% 65% 35% / 40% 55% 45% 60%; }
+      75%       { border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%; }
+    }
+
+    @keyframes spinRing {
+      to { transform: rotate(360deg); }
+    }
+
     /* spinning ring container */
     .about-frame {
       position: relative;
-      width: clamp(260px, 30vw, 420px);
-      height: clamp(260px, 30vw, 420px);
+      width: clamp(320px, 36vw, 520px);
+      height: clamp(360px, 42vw, 580px);
       flex-shrink: 0;
     }
 
@@ -301,8 +313,7 @@
     .about-frame::before {
       content: '';
       position: absolute;
-      inset: -6px;
-      border-radius: 50%;
+      inset: -7px;
       background: conic-gradient(
         var(--amber) 0deg,
         var(--clay) 90deg,
@@ -310,22 +321,18 @@
         var(--taupe) 270deg,
         var(--amber) 360deg
       );
-      animation: spinRing 6s linear infinite;
+      animation: spinRing 7s linear infinite, blobMorph 9s ease-in-out infinite;
       z-index: 0;
     }
 
-    /* white gap between ring and photo */
+    /* gap between ring and photo */
     .about-frame::after {
       content: '';
       position: absolute;
       inset: -2px;
-      border-radius: 50%;
       background: var(--bark);
+      animation: blobMorph 9s ease-in-out infinite;
       z-index: 1;
-    }
-
-    @keyframes spinRing {
-      to { transform: rotate(360deg); }
     }
 
     .about-img-placeholder {
@@ -334,7 +341,7 @@
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 50%;
+      animation: blobMorph 9s ease-in-out infinite;
       transform: scaleX(-1);
     }
     .about-heading {
