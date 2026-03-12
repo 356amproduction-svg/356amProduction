@@ -1416,8 +1416,8 @@
 
   /* ── FALLING LEAVES ── */
   (function() {
-    const wrapper = document.querySelector('.hero-image-wrapper');
-    if (!wrapper) return;
+    const containers = document.querySelectorAll('.hero-image-wrapper, .hero-content');
+    if (!containers.length) return;
 
     const colors = ['#c5653a','#415f58','#657A42','#d4784a','#5f5553','#D39932'];
 
@@ -1435,35 +1435,42 @@
 
     const LEAF_COUNT = 14;
 
-    for (let i = 0; i < LEAF_COUNT; i++) {
-      const leaf = document.createElement('div');
-      leaf.className = 'leaf';
+    function spawnLeaves(container) {
+      container.style.position = 'relative';
+      container.style.overflow = 'hidden';
 
-      const path  = leafPaths[i % leafPaths.length];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      const size  = 14 + Math.random() * 18;
-      const left  = Math.random() * 100;
-      const dur   = 5 + Math.random() * 6;
-      const delay = Math.random() * 8;
-      const sway  = (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * 60);
-      const spin  = (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 360);
-      const scale = 0.7 + Math.random() * 0.6;
+      for (let i = 0; i < LEAF_COUNT; i++) {
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf';
 
-      leaf.style.cssText = `
-        left:${left}%;
-        --fall-dur:${dur}s;
-        --fall-delay:${delay}s;
-        --sway:${sway}px;
-        --spin:${spin}deg;
-        --leaf-scale:${scale};
-      `;
+        const path  = leafPaths[i % leafPaths.length];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size  = 14 + Math.random() * 18;
+        const left  = Math.random() * 100;
+        const dur   = 5 + Math.random() * 6;
+        const delay = Math.random() * 8;
+        const sway  = (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * 60);
+        const spin  = (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 360);
+        const scale = 0.7 + Math.random() * 0.6;
 
-      leaf.innerHTML = `<svg width="${size}" height="${size * 1.2}" viewBox="0 0 20 22">
-        <path d="${path}" fill="${color}" opacity="0.85"/>
-      </svg>`;
+        leaf.style.cssText = `
+          left:${left}%;
+          --fall-dur:${dur}s;
+          --fall-delay:${delay}s;
+          --sway:${sway}px;
+          --spin:${spin}deg;
+          --leaf-scale:${scale};
+        `;
 
-      wrapper.appendChild(leaf);
+        leaf.innerHTML = `<svg width="${size}" height="${size * 1.2}" viewBox="0 0 20 22">
+          <path d="${path}" fill="${color}" opacity="0.85"/>
+        </svg>`;
+
+        container.appendChild(leaf);
+      }
     }
+
+    containers.forEach(spawnLeaves);
   })();
 
   </script>
