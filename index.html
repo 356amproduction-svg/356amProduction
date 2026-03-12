@@ -312,6 +312,27 @@
     .about-frame::before { display: none; }
     .about-frame::after  { display: none; }
 
+    /* ── FALLING LEAVES ── */
+    .hero-image-wrapper { overflow: hidden; }
+
+    .leaf {
+      position: absolute;
+      top: -60px;
+      pointer-events: none;
+      opacity: 0;
+      animation: leafFall var(--fall-dur, 6s) ease-in var(--fall-delay, 0s) infinite;
+      will-change: transform, opacity;
+    }
+
+    .leaf svg { display: block; }
+
+    @keyframes leafFall {
+      0%   { transform: translateY(0)      translateX(0)       rotate(0deg)   scale(var(--leaf-scale,1)); opacity: 0; }
+      5%   { opacity: 0.9; }
+      80%  { opacity: 0.8; }
+      100% { transform: translateY(110vh)  translateX(var(--sway, 40px))  rotate(var(--spin, 300deg)) scale(var(--leaf-scale,1)); opacity: 0; }
+    }
+
     .about-img-placeholder {
       position: relative;
       z-index: 2;
@@ -1392,6 +1413,58 @@
         }, 420);
       });
     }
+
+  /* ── FALLING LEAVES ── */
+  (function() {
+    const wrapper = document.querySelector('.hero-image-wrapper');
+    if (!wrapper) return;
+
+    const colors = ['#c5653a','#415f58','#657A42','#d4784a','#5f5553','#D39932'];
+
+    // leaf SVG paths — 4 natural leaf shapes
+    const leafPaths = [
+      // maple-ish
+      'M12,2 C8,6 2,8 0,14 C4,12 6,14 8,18 C10,14 14,12 12,2Z',
+      // simple oval leaf
+      'M10,0 C16,4 18,12 10,20 C2,12 4,4 10,0Z',
+      // elongated leaf
+      'M6,0 C12,3 14,10 6,18 C-2,10 0,3 6,0Z',
+      // asymmetric leaf
+      'M2,14 C0,8 4,2 10,0 C14,4 12,10 8,18 C6,16 4,16 2,14Z'
+    ];
+
+    const LEAF_COUNT = 14;
+
+    for (let i = 0; i < LEAF_COUNT; i++) {
+      const leaf = document.createElement('div');
+      leaf.className = 'leaf';
+
+      const path  = leafPaths[i % leafPaths.length];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size  = 14 + Math.random() * 18;
+      const left  = Math.random() * 100;
+      const dur   = 5 + Math.random() * 6;
+      const delay = Math.random() * 8;
+      const sway  = (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * 60);
+      const spin  = (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 360);
+      const scale = 0.7 + Math.random() * 0.6;
+
+      leaf.style.cssText = `
+        left:${left}%;
+        --fall-dur:${dur}s;
+        --fall-delay:${delay}s;
+        --sway:${sway}px;
+        --spin:${spin}deg;
+        --leaf-scale:${scale};
+      `;
+
+      leaf.innerHTML = `<svg width="${size}" height="${size * 1.2}" viewBox="0 0 20 22">
+        <path d="${path}" fill="${color}" opacity="0.85"/>
+      </svg>`;
+
+      wrapper.appendChild(leaf);
+    }
+  })();
 
   </script>
 </body>
