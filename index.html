@@ -283,14 +283,58 @@
       align-items: center;
     }
     .about-image {
-      aspect-ratio: 4/5;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
     }
+
+    /* spinning ring container */
+    .about-frame {
+      position: relative;
+      width: clamp(260px, 30vw, 420px);
+      height: clamp(260px, 30vw, 420px);
+      flex-shrink: 0;
+    }
+
+    /* the rotating conic-gradient ring */
+    .about-frame::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--amber) 0deg,
+        var(--clay) 90deg,
+        var(--moss) 180deg,
+        var(--taupe) 270deg,
+        var(--amber) 360deg
+      );
+      animation: spinRing 6s linear infinite;
+      z-index: 0;
+    }
+
+    /* white gap between ring and photo */
+    .about-frame::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: var(--bark);
+      z-index: 1;
+    }
+
+    @keyframes spinRing {
+      to { transform: rotate(360deg); }
+    }
+
     .about-img-placeholder {
+      position: relative;
+      z-index: 2;
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
+      border-radius: 50%;
       transform: scaleX(-1);
     }
     .about-heading {
@@ -924,6 +968,69 @@
     .testimonial-card {
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), border-color 0.35s ease, box-shadow 0.45s ease;
     }
+
+    /* ── FIX about-image clip for circle ── */
+    .about-image {
+      clip-path: none !important;
+      transition: none !important;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease 0.2s, transform 1s cubic-bezier(0.22,1,0.36,1) 0.2s !important;
+    }
+    .about-image.visible {
+      clip-path: none !important;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── BUTTON PULSE GLOW ── */
+    @keyframes btnGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(197,101,58,0); }
+      50%       { box-shadow: 0 0 22px 6px rgba(197,101,58,0.35); }
+    }
+    .btn-primary { animation: fadeUp 0.9s ease 0.85s forwards, btnGlow 3s ease-in-out 2s infinite; }
+
+    /* ── FLOATING SPARKLES in hero ── */
+    @keyframes sparkleFloat {
+      0%   { transform: translateY(0) scale(1); opacity: 0.7; }
+      50%  { transform: translateY(-30px) scale(1.3); opacity: 1; }
+      100% { transform: translateY(-60px) scale(0.8); opacity: 0; }
+    }
+    .sparkle {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      pointer-events: none;
+      animation: sparkleFloat var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+    }
+
+    /* ── PORTFOLIO ITEM STAGGER ENTRANCE ── */
+    @keyframes popIn {
+      0%   { opacity: 0; transform: scale(0.88) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .portfolio-item.visible {
+      animation: popIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* ── SECTION HEADING SLIDE-IN ── */
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .about-heading.visible, .portfolio-heading.visible {
+      animation: slideInLeft 0.9s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* ── ABOUT FRAME GLOW PULSE ── */
+    @keyframes frameGlow {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(197,101,58,0.4)); }
+      50%       { filter: drop-shadow(0 0 22px rgba(197,101,58,0.75)); }
+    }
+    .about-frame {
+      animation: frameGlow 4s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -953,6 +1060,12 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <span class="sparkle" style="left:12%;top:30%;--dur:3.8s;--delay:0s;"></span>
+    <span class="sparkle" style="left:25%;top:60%;--dur:5s;--delay:0.8s;background:var(--moss);"></span>
+    <span class="sparkle" style="left:70%;top:25%;--dur:4.2s;--delay:1.5s;"></span>
+    <span class="sparkle" style="left:80%;top:65%;--dur:3.5s;--delay:0.3s;background:var(--clay);"></span>
+    <span class="sparkle" style="left:50%;top:15%;--dur:6s;--delay:2s;background:var(--tangerine);"></span>
+    <span class="sparkle" style="left:90%;top:45%;--dur:4.8s;--delay:1s;"></span>
     <div class="hero-content">
       <p class="hero-eyebrow">Digital Photography</p>
       <h1 class="hero-headline">Moments caught<br>in <em>Golden</em> light</h1>
@@ -971,7 +1084,9 @@
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-image reveal">
-      <img class="about-img-placeholder" src="about.png" alt="Faith" />
+      <div class="about-frame">
+        <img class="about-img-placeholder" src="about.png" alt="Faith" />
+      </div>
     </div>
     <div class="about-content reveal">
       <div class="section-label">About</div>
