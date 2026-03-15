@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="logos/main_logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services — 3:56am Production</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -699,6 +700,9 @@
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
     }
+      .nav-cta { padding:9px 24px; background:var(--amber); color:var(--cream) !important; font-size:0.7rem !important; letter-spacing:0.18em !important; text-decoration:none; }
+    .nav-cta::after { display:none !important; }
+    .nav-cta:hover { background:var(--forest) !important; }
   </style>
 </head>
 <body>
@@ -719,7 +723,7 @@
       <ul class="nav-links">
         <li><a href="galleries.html">Galleries</a></li>
         <li><a href="index.html#about">About</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="index.html#book" class="nav-cta">Book Now</a></li>
       </ul>
     </nav>
   </header>
@@ -1087,7 +1091,7 @@
         <ul class="footer-links">
             <li><a href="galleries.html">Galleries</a></li>
           <li><a href="index.html#about">About</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="index.html#book" class="nav-cta">Book Now</a></li>
         </ul>
       </div>
       <div>
@@ -1397,28 +1401,58 @@
 
       if(!valid) return;
 
-      const data = new FormData(form);
+      // Build booking object
+      function gv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+      const booking={
+        id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+        firstName:gv('fname'),
+        lastName:gv('lname'),
+        email:gv('femail'),
+        phone:gv('fphone'),
+        sessionType:gv('h_type')||'Not specified',
+        sessionLength:gv('h_length'),
+        locationType:gv('h_location'),
+        preferredDate:gv('h_date'),
+        timePreference:gv('h_time'),
+        startTime:gv('h_start'),
+        endTime:gv('h_end'),
+        skinRetouching:gv('h_retouch'),
+        depositDue:gv('h_deposit'),
+        message:gv('fmessage'),
+        termsAgreed: checkbox.checked ? 'agreed' : '',
+        status:'new_request',
+        submittedAt:new Date().toISOString(),
+        notes:''
+      };
 
+      // Debug: log booking object to console
+      console.log('[3:56am] Booking submitted:', booking);
+      console.log('[3:56am] Field check — sessionType:', booking.sessionType, '| sessionLength:', booking.sessionLength, '| preferredDate:', booking.preferredDate);
+
+      // Save directly to shared localStorage (same GitHub Pages origin as admin dashboard)
       try {
-        const res = await fetch('https://formspree.io/f/xreyzydq',{
-          method:'POST',
-          body: data,
-          headers:{ 'Accept':'application/json' }
-        });
-
-        form.style.transition='opacity 0.45s ease, transform 0.45s ease';
-        form.style.opacity='0';
-        form.style.transform='translateY(-18px)';
-        setTimeout(()=>{
-          form.style.display='none';
-          success.style.display='flex';
-          requestAnimationFrame(()=>success.classList.add('show'));
-        },450);
-      } catch(err){
-        // fallback: still show success to user (FormSubmit handles the email)
-        form.style.opacity='0';
-        setTimeout(()=>{ form.style.display='none'; success.style.display='flex'; success.classList.add('show'); },450);
+        const existing=JSON.parse(localStorage.getItem('356am_bookings')||'[]');
+        existing.unshift(booking);
+        localStorage.setItem('356am_bookings',JSON.stringify(existing));
+        console.log('[3:56am] Saved to localStorage. Total bookings:', existing.length);
+      } catch(e){
+        console.error('[3:56am] localStorage save failed:', e);
       }
+
+      // Send Formspree email in background — client stays on this page
+      fetch('https://formspree.io/f/xreyzydq',{
+        method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}
+      }).catch(()=>{});
+
+      // Show success message — no redirect
+      form.style.transition='opacity 0.45s ease, transform 0.45s ease';
+      form.style.opacity='0';
+      form.style.transform='translateY(-18px)';
+      setTimeout(()=>{
+        form.style.display='none';
+        success.style.display='flex';
+        requestAnimationFrame(()=>success.classList.add('show'));
+      },450);
     });
   </script>
 </body>

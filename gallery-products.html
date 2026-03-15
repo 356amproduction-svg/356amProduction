@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="logos/main_logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Products — 3:56am Production</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -117,6 +118,9 @@
       .footer-top { grid-template-columns:1fr; gap:40px; }
       .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
     }
+      .nav-cta { padding:9px 24px; background:var(--amber); color:var(--cream) !important; font-size:0.7rem !important; letter-spacing:0.18em !important; text-decoration:none; }
+    .nav-cta::after { display:none !important; }
+    .nav-cta:hover { background:var(--forest) !important; }
   </style>
 </head>
 <body>
@@ -136,7 +140,7 @@
       <ul class="nav-links">
         <li><a href="galleries.html" class="active">Galleries</a></li>
         <li><a href="index.html#about">About</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html#book" class="nav-cta">Book Now</a></li>
       </ul>
     </nav>
   </header>
@@ -200,7 +204,7 @@
         <ul class="footer-links">
             <li><a href="galleries.html">Galleries</a></li>
           <li><a href="index.html#about">About</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="index.html#book" class="nav-cta">Book Now</a></li>
         </ul>
       </div>
       <div>
