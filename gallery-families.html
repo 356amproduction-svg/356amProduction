@@ -72,10 +72,10 @@
     .gallery-intro-heading em { font-style:italic; color:var(--clay); }
     .gallery-intro-text { font-size:1rem; line-height:1.9; color:var(--umber); }
 
-    .gallery-mosaic { padding:0 64px 100px; display:grid; grid-template-columns:repeat(12,1fr); gap:6px; }
-    .mosaic-cell { overflow:hidden; background:var(--sand); }
-    .mosaic-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-    .mosaic-cell:hover img { transform:scale(1.04); }
+    .gallery-mosaic { padding:0 64px 100px; columns:3; column-gap:6px; }
+    .mosaic-cell { break-inside:avoid; margin-bottom:6px; background:var(--sand); }
+    .mosaic-cell img { width:100%; height:auto; display:block; transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .mosaic-cell:hover img { opacity:0.92; }
 
     .gallery-cta { background:var(--bark); padding:100px 64px; text-align:center; }
     .gallery-cta-heading { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(2.4rem,4vw,4.5rem); color:var(--cream); margin-bottom:18px; }
@@ -110,9 +110,8 @@
       .gallery-hero { height:60vh; }
       .gallery-hero-overlay { padding:24px 28px 40px; }
       .gallery-intro { padding:60px 28px 50px; }
-      .gallery-mosaic { padding:0 28px 70px; grid-template-columns:1fr 1fr; }
-      .mosaic-cell { grid-column:auto !important; grid-row:auto !important; aspect-ratio:1 !important; }
-      .gallery-cta { padding:70px 28px; }
+      .gallery-mosaic { padding:0 28px 70px; columns:1; }
+            .gallery-cta { padding:70px 28px; }
       .gallery-nav-strip { padding:30px 28px; flex-direction:column; gap:18px; }
       footer { padding:60px 28px 36px; }
       .footer-top { grid-template-columns:1fr; gap:40px; }
@@ -166,82 +165,82 @@
   </section>
 
   <div class="gallery-mosaic">
-    <div class="mosaic-cell reveal" style="grid-column:1/7; aspect-ratio:3/2;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-01.jpg" alt="Family portrait 1" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:7/13; aspect-ratio:3/2;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-02.jpg" alt="Family portrait 2" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/5; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-03.jpg" alt="Family portrait 3" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:5/9; aspect-ratio:1/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-04.jpg" alt="Family portrait 4" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:9/13; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-05.jpg" alt="Family portrait 5" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/13; aspect-ratio:3/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-06.jpg" alt="Family portrait 6" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/5; aspect-ratio:1/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-07.jpg" alt="Family portrait 7" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:5/9; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-08.jpg" alt="Family portrait 8" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:9/13; aspect-ratio:1/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-09.jpg" alt="Family portrait 9" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/7; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-10.jpg" alt="Family portrait 10" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:7/13; aspect-ratio:1/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-11.jpg" alt="Family portrait 11" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/5; aspect-ratio:3/2;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-12.jpg" alt="Family portrait 12" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:5/13; aspect-ratio:3/2;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-13.jpg" alt="Family portrait 13" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/13; aspect-ratio:21/9;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-14.jpg" alt="Family portrait 14" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/7; aspect-ratio:1/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-15.jpg" alt="Family portrait 15" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:7/13; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-16.jpg" alt="Family portrait 16" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/5; aspect-ratio:3/2;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-17.jpg" alt="Family portrait 17" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:5/9; aspect-ratio:1/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-18.jpg" alt="Family portrait 18" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:9/13; aspect-ratio:3/2;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-19.jpg" alt="Family portrait 19" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/9; aspect-ratio:3/2;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-20.jpg" alt="Family portrait 20" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:9/13; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-21.jpg" alt="Family portrait 21" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/13; aspect-ratio:3/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-22.jpg" alt="Family portrait 22" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/5; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-23.jpg" alt="Family portrait 23" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:5/9; aspect-ratio:4/5;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-24.jpg" alt="Family portrait 24" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:9/13; aspect-ratio:1/1;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-25.jpg" alt="Family portrait 25" loading="lazy" />
     </div>
-    <div class="mosaic-cell reveal" style="grid-column:1/13; aspect-ratio:21/9;">
+    <div class="mosaic-cell reveal">
       <img src="gallery-families/families-26.jpg" alt="Family portrait 26" loading="lazy" />
     </div>
   </div>
