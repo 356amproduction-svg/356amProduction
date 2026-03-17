@@ -1429,20 +1429,25 @@
       console.log('[3:56am] Booking submitted:', booking);
       console.log('[3:56am] Field check — sessionType:', booking.sessionType, '| sessionLength:', booking.sessionLength, '| preferredDate:', booking.preferredDate);
 
-      // Save directly to shared localStorage (same GitHub Pages origin as admin dashboard)
+      // Save to Firestore
       try {
-        const existing=JSON.parse(localStorage.getItem('356am_bookings')||'[]');
-        existing.unshift(booking);
-        localStorage.setItem('356am_bookings',JSON.stringify(existing));
-        console.log('[3:56am] Saved to localStorage. Total bookings:', existing.length);
+        const{initializeApp}=await import('https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js');
+        const{getFirestore,collection,addDoc,serverTimestamp}=await import('https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js');
+        const app=initializeApp({
+          apiKey:'AIzaSyAFBc7UMpq-2uuiZ8r-TToKvX-IpQ594Do',
+          authDomain:'am-production-3c826.firebaseapp.com',
+          projectId:'am-production-3c826',
+          storageBucket:'am-production-3c826.firebasestorage.app',
+          messagingSenderId:'153860144380',
+          appId:'1:153860144380:web:41174498c368419445eb79'
+        },'services');
+        const db=getFirestore(app);
+        const{id,...firestoreData}=booking;
+        await addDoc(collection(db,'bookings'),{...firestoreData,submittedAt:serverTimestamp(),source:'services'});
+        console.log('[3:56am] Saved to Firestore');
       } catch(e){
-        console.error('[3:56am] localStorage save failed:', e);
+        console.error('[3:56am] Firestore save failed:', e);
       }
-
-      // Send Formspree email in background — client stays on this page
-      fetch('https://formspree.io/f/xreyzydq',{
-        method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}
-      }).catch(()=>{});
 
       // Show success message — no redirect
       form.style.transition='opacity 0.45s ease, transform 0.45s ease';
