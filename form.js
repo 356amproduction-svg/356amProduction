@@ -113,6 +113,7 @@ if (contactForm) {
     } catch (err) {
       console.error("Booking submit failed:", err);
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = "Try Again"; }
+      alert("Submission failed: " + err.message);
     }
   });
 }

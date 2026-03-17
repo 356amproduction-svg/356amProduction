@@ -744,13 +744,9 @@
     <!-- Left: Steps -->
     <div class="config-steps">
 
-      <form id="contactForm"
-        action="https://formspree.io/f/xreyzydq"
-        method="POST">
+      <form id="contactForm" novalidate>
 
-        <!-- Hidden fields carry configurator selections -->
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_subject" value="New Booking Request — 3:56am Production" />
+        <!-- Hidden fields carry configurator selections into Firestore -->
         <input type="hidden" name="shoot_type"     id="h_type"     value="" />
         <input type="hidden" name="session_length" id="h_length"   value="" />
         <input type="hidden" name="location_type"  id="h_location" value="" />
