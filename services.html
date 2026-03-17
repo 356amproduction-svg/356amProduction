@@ -723,7 +723,7 @@
       <ul class="nav-links">
         <li><a href="galleries.html">Galleries</a></li>
         <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#book" class="nav-cta">Book Now</a></li>
+        <li><a href="services.html" class="nav-cta">Book Now</a></li>
       </ul>
     </nav>
   </header>
@@ -1091,7 +1091,7 @@
         <ul class="footer-links">
             <li><a href="galleries.html">Galleries</a></li>
           <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#book" class="nav-cta">Book Now</a></li>
+          <li><a href="services.html" class="nav-cta">Book Now</a></li>
         </ul>
       </div>
       <div>
@@ -1368,97 +1368,7 @@
     });
     renderCalendar();
 
-    // ── Form submit (AJAX) ──
-    const form    = document.getElementById('contactForm');
-    const success = document.getElementById('formSuccess');
-
-    form.addEventListener('submit', async e=>{
-      e.preventDefault();
-      let valid = true;
-
-      // Required fields
-      form.querySelectorAll('[required]').forEach(f=>{
-        if(!f.value.trim()){
-          valid=false;
-          f.style.borderBottomColor='#c0746a';
-          f.addEventListener('input',()=>{ f.style.borderBottomColor=''; },{once:true});
-        }
-      });
-
-      // Terms checkbox
-      const checkbox = document.getElementById('termsCheckbox');
-      const termsError = document.getElementById('termsError');
-      const termsLabel = document.getElementById('termsLabel');
-      if(!checkbox.checked){
-        valid=false;
-        termsLabel.classList.add('error');
-        termsError.classList.add('show');
-        checkbox.addEventListener('change',()=>{
-          termsLabel.classList.remove('error');
-          termsError.classList.remove('show');
-        },{once:true});
-      }
-
-      if(!valid) return;
-
-      // Build booking object
-      function gv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
-      const booking={
-        id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
-        firstName:gv('fname'),
-        lastName:gv('lname'),
-        email:gv('femail'),
-        phone:gv('fphone'),
-        sessionType:gv('h_type')||'Not specified',
-        sessionLength:gv('h_length'),
-        locationType:gv('h_location'),
-        preferredDate:gv('h_date'),
-        timePreference:gv('h_time'),
-        startTime:gv('h_start'),
-        endTime:gv('h_end'),
-        skinRetouching:gv('h_retouch'),
-        depositDue:gv('h_deposit'),
-        message:gv('fmessage'),
-        termsAgreed: checkbox.checked ? 'agreed' : '',
-        status:'new_request',
-        submittedAt:new Date().toISOString(),
-        notes:''
-      };
-
-      // Debug: log booking object to console
-      console.log('[3:56am] Booking submitted:', booking);
-      console.log('[3:56am] Field check — sessionType:', booking.sessionType, '| sessionLength:', booking.sessionLength, '| preferredDate:', booking.preferredDate);
-
-      // Save to Firestore
-      try {
-        const{initializeApp}=await import('https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js');
-        const{getFirestore,collection,addDoc,serverTimestamp}=await import('https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js');
-        const app=initializeApp({
-          apiKey:'AIzaSyAFBc7UMpq-2uuiZ8r-TToKvX-IpQ594Do',
-          authDomain:'am-production-3c826.firebaseapp.com',
-          projectId:'am-production-3c826',
-          storageBucket:'am-production-3c826.firebasestorage.app',
-          messagingSenderId:'153860144380',
-          appId:'1:153860144380:web:41174498c368419445eb79'
-        },'services');
-        const db=getFirestore(app);
-        const{id,...firestoreData}=booking;
-        await addDoc(collection(db,'bookings'),{...firestoreData,submittedAt:serverTimestamp(),source:'services'});
-        console.log('[3:56am] Saved to Firestore');
-      } catch(e){
-        console.error('[3:56am] Firestore save failed:', e);
-      }
-
-      // Show success message — no redirect
-      form.style.transition='opacity 0.45s ease, transform 0.45s ease';
-      form.style.opacity='0';
-      form.style.transform='translateY(-18px)';
-      setTimeout(()=>{
-        form.style.display='none';
-        success.style.display='flex';
-        requestAnimationFrame(()=>success.classList.add('show'));
-      },450);
-    });
   </script>
+  <script type="module" src="form.js"></script>
 </body>
 </html>

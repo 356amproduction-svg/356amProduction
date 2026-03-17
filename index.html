@@ -1157,7 +1157,7 @@
     <a href="index.html" onclick="closeMobileMenu()">Home</a>
     <a href="galleries.html" onclick="closeMobileMenu()">Galleries</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
-    <a href="#book" onclick="closeMobileMenu()">Book Now</a>
+    <a href="services.html" onclick="closeMobileMenu()">Book Now</a>
   </div>
 
   <header class="site-header" id="site-header">
@@ -1168,7 +1168,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="galleries.html">Galleries</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#book" class="nav-cta">Book Now</a></li>
+        <li><a href="services.html" class="nav-cta">Book Now</a></li>
       </ul>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
         <span></span>
@@ -1190,7 +1190,7 @@
       <p class="hero-eyebrow">Digital Photography</p>
       <h1 class="hero-headline">Moments caught<br>in <em>Golden</em> light</h1>
       <p class="hero-sub">Intimate, editorial portraits and celebrations captured with warmth, intention, and a quiet attention to the beautiful ordinary.</p>
-      <a href="#book" class="btn-primary">Book a Session</a>
+      <a href="services.html" class="btn-primary">Book a Session</a>
     </div>
     <div class="hero-image-wrapper">
       <img class="hero-img-placeholder" src="hero.jpg" alt="3:56am Production — golden hour portrait" />
@@ -1320,7 +1320,7 @@
     </div>
 
     <div class="services-cta reveal">
-      <a href="#book" class="btn-services">Book a Session</a>
+      <a href="services.html" class="btn-services">Book a Session</a>
     </div>
   </section>
 
@@ -1349,98 +1349,6 @@
     </div>
   </section>
 
-  <!-- BOOKING -->
-  <section class="booking" id="book">
-    <div class="booking-inner">
-      <div class="booking-info">
-        <div class="section-label reveal">Book a Session</div>
-        <h2 class="booking-info-heading reveal">Let's create something <em>beautiful</em></h2>
-        <p class="booking-info-sub reveal">Fill out the form and I'll be in touch within 48 hours to confirm your session details, location, and availability.</p>
-        <div class="booking-details">
-          <div class="booking-detail-item reveal">
-            <div class="booking-detail-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div class="booking-detail-text">
-              <strong>48hr Turnaround</strong>
-              Edited gallery delivered within 48 hours of your session.
-            </div>
-          </div>
-          <div class="booking-detail-item reveal">
-            <div class="booking-detail-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="booking-detail-text">
-              <strong>Austin, TX &amp; Surrounding Areas</strong>
-              Available for travel sessions worldwide.
-            </div>
-          </div>
-          <div class="booking-detail-item reveal">
-            <div class="booking-detail-icon">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            </div>
-            <div class="booking-detail-text">
-              <strong>∞ Images Included</strong>
-              Every edited image from your session — no limits.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="booking-form-wrapper">
-        <form class="booking-form" id="booking-form" novalidate>
-          <div class="form-group">
-            <label for="f-name">Full Name</label>
-            <input type="text" id="f-name" name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label for="f-email">Email</label>
-            <input type="email" id="f-email" name="email" placeholder="your@email.com" required />
-          </div>
-          <div class="form-group">
-            <label for="f-phone">Phone</label>
-            <input type="tel" id="f-phone" name="phone" placeholder="(555) 000-0000" />
-          </div>
-          <div class="form-group">
-            <label for="f-session">Session Type</label>
-            <select id="f-session" name="sessionType" required>
-              <option value="" disabled selected>Select a session</option>
-              <option>Families</option>
-              <option>Maternity</option>
-              <option>Portraits</option>
-              <option>Elopements</option>
-              <option>Celebrations</option>
-              <option>Editorial</option>
-              <option>Automotive</option>
-              <option>Products</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="f-date">Preferred Date</label>
-            <input type="date" id="f-date" name="preferredDate" />
-          </div>
-          <div class="form-group">
-            <label for="f-location">Preferred Location</label>
-            <input type="text" id="f-location" name="location" placeholder="City or venue" />
-          </div>
-          <div class="form-group full">
-            <label for="f-message">Tell me about your vision</label>
-            <textarea id="f-message" name="message" placeholder="Share any details, inspiration, or questions..." rows="4"></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Send Inquiry</button>
-        </form>
-        <div class="form-success" id="form-success">
-          <div class="success-icon">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <h3 class="success-heading">Message <em>received</em></h3>
-          <p class="success-text">Thank you — I'll be in touch within 48 hours to confirm your session.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="footer-top">
@@ -1455,7 +1363,7 @@
           <li><a href="galleries.html">Galleries</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="#book">Book Now</a></li>
+          <li><a href="services.html">Book Now</a></li>
         </ul>
       </div>
       <div>
@@ -1612,8 +1520,8 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Form submission handled by firebase-config.js
+
   </script>
-  <script type="module" src="firebase-config.js"></script>
+
 </body>
 </html>
