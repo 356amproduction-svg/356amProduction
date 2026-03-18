@@ -20,7 +20,7 @@
 // ─────────────────────────────────────────────────────────────────────
 
 const GCAL_API_KEY    = 'AIzaSyDIK-WNS7ymgiL3OCqGIwAhq4qLIW-i8I0';
-const GCAL_CALENDAR_ID = '356amproduction@gmail.com';  // e.g. faith@gmail.com
+const GCAL_CALENDAR_ID = 'faithwithsnappr@gmail.com';  // e.g. faith@gmail.com
 
 // ── Cache: "YYYY-MM" → Set of busy "YYYY-MM-DD" strings ──────────────
 const _cache = {};
