@@ -76,8 +76,8 @@
     .session-label { font-family:'Jost',sans-serif; font-weight:200; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; display:flex; align-items:center; gap:16px; }
     .session-label::before { content:''; display:block; width:38px; height:1px; background:var(--amber); flex-shrink:0; }
     .gallery-mosaic { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; }
-    .mosaic-cell { background:var(--sand); overflow:hidden; aspect-ratio:2/3; }
-    .mosaic-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.4s ease; }
+    .mosaic-cell { background:var(--sand); overflow:hidden; }
+    .mosaic-cell img { width:100%; height:auto; display:block; transition:opacity 0.4s ease; }
     .mosaic-cell:hover img { opacity:0.88; }
 
     .gallery-cta { background:var(--bark); padding:100px 64px; text-align:center; }
