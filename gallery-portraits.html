@@ -72,10 +72,13 @@
     .gallery-intro-heading em { font-style:italic; color:var(--clay); }
     .gallery-intro-text { font-size:1rem; line-height:1.9; color:var(--umber); }
 
-    .gallery-mosaic { padding:0 64px 100px; display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; }
-    .mosaic-cell { background:var(--sand); overflow:hidden; }
-    .mosaic-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-    .mosaic-cell:hover img { opacity:0.92; }
+    .session-group { padding:0 64px 72px; }
+    .session-label { font-family:'Jost',sans-serif; font-weight:200; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; display:flex; align-items:center; gap:16px; }
+    .session-label::before { content:''; display:block; width:38px; height:1px; background:var(--amber); flex-shrink:0; }
+    .gallery-mosaic { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; }
+    .mosaic-cell { background:var(--sand); overflow:hidden; aspect-ratio:2/3; }
+    .mosaic-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.4s ease; }
+    .mosaic-cell:hover img { opacity:0.88; }
 
     .gallery-cta { background:var(--bark); padding:100px 64px; text-align:center; }
     .gallery-cta-heading { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(2.4rem,4vw,4.5rem); color:var(--cream); margin-bottom:18px; }
@@ -110,7 +113,8 @@
       .gallery-hero { height:60vh; }
       .gallery-hero-overlay { padding:24px 28px 40px; }
       .gallery-intro { padding:60px 28px 50px; }
-      .gallery-mosaic { padding:0 28px 70px; grid-template-columns:1fr; }
+      .session-group { padding:0 28px 50px; }
+      .gallery-mosaic { grid-template-columns:repeat(2, 1fr); }
             .gallery-cta { padding:70px 28px; }
       .gallery-nav-strip { padding:30px 28px; flex-direction:column; gap:18px; }
       footer { padding:60px 28px 36px; }
@@ -147,7 +151,7 @@
   </header>
 
   <section class="gallery-hero">
-    <img class="gallery-hero-img" src="gallery-portraits/portrait-01.jpg" alt="Portraits — 3:56am Production" />
+    <img class="gallery-hero-img" src="gallery-portraits/session-2026-08-12-01.jpg" alt="Portraits — 3:56am Production" />
     <div class="gallery-hero-overlay">
       <a href="galleries.html" class="back-btn">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -166,39 +170,84 @@
     <p class="gallery-intro-text reveal">Each portrait session is an unhurried exploration — of light, of character, of the quiet emotion that lives between poses. These sessions take place during the golden hour, in fields, city streets, forests, and anywhere the light feels honest.</p>
   </section>
 
-  <div class="gallery-mosaic">
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-01.jpg" alt="Portrait 1" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-02.jpg" alt="Portrait 2" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-03.jpg" alt="Portrait 3" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-04.jpg" alt="Portrait 4" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-05.jpg" alt="Portrait 5" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-06.jpg" alt="Portrait 6" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-07.jpg" alt="Portrait 7" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-08.jpg" alt="Portrait 8" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-09.jpg" alt="Portrait 9" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-10.jpg" alt="Portrait 10" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-11.jpg" alt="Portrait 11" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-12.jpg" alt="Portrait 12" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-13.jpg" alt="Portrait 13" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-14.jpg" alt="Portrait 14" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-15.jpg" alt="Portrait 15" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-16.jpg" alt="Portrait 16" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-17.jpg" alt="Portrait 17" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-18.jpg" alt="Portrait 18" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-19.jpg" alt="Portrait 19" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-20.jpg" alt="Portrait 20" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-21.jpg" alt="Portrait 21" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-22.jpg" alt="Portrait 22" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-23.jpg" alt="Portrait 23" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-24.jpg" alt="Portrait 24" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-25.jpg" alt="Portrait 25" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-26.jpg" alt="Portrait 26" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-27.jpg" alt="Portrait 27" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-28.jpg" alt="Portrait 28" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-29.jpg" alt="Portrait 29" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-30.jpg" alt="Portrait 30" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-31.jpg" alt="Portrait 31" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-portraits/portrait-32.jpg" alt="Portrait 32" loading="lazy" /></div>
+  <div class="session-group reveal">
+    <div class="session-label">October 25, 2022</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2022-10-25-01.jpg" alt="Session Oct 25 2022 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2022-10-25-02.jpg" alt="Session Oct 25 2022 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2022-10-25-03.jpg" alt="Session Oct 25 2022 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2022-10-25-04.jpg" alt="Session Oct 25 2022 — 4" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">January 19, 2023</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-01-19-01.jpg" alt="Session Jan 19 2023 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-01-19-02.jpg" alt="Session Jan 19 2023 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-01-19-03.jpg" alt="Session Jan 19 2023 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-01-19-04.jpg" alt="Session Jan 19 2023 — 4" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">December 17, 2023</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-12-17-01.jpg" alt="Session Dec 17 2023 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-12-17-02.jpg" alt="Session Dec 17 2023 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-12-17-03.jpg" alt="Session Dec 17 2023 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2023-12-17-04.jpg" alt="Session Dec 17 2023 — 4" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">February 29, 2024</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-02-29-01.jpg" alt="Session Feb 29 2024 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-02-29-02.jpg" alt="Session Feb 29 2024 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-02-29-03.jpg" alt="Session Feb 29 2024 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-02-29-04.jpg" alt="Session Feb 29 2024 — 4" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">March 28, 2024</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-03-28-01.jpg" alt="Session Mar 28 2024 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-03-28-02.jpg" alt="Session Mar 28 2024 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-03-28-03.jpg" alt="Session Mar 28 2024 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2024-03-28-04.jpg" alt="Session Mar 28 2024 — 4" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">November 9, 2025</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2025-11-09-01.jpg" alt="Session Nov 9 2025 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2025-11-09-02.jpg" alt="Session Nov 9 2025 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2025-11-09-03.jpg" alt="Session Nov 9 2025 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2025-11-09-04.jpg" alt="Session Nov 9 2025 — 4" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">July 14, 2026</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-07-14-01.jpg" alt="Session Jul 14 2026 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-07-14-02.jpg" alt="Session Jul 14 2026 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-07-14-03.jpg" alt="Session Jul 14 2026 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-07-14-04.jpg" alt="Session Jul 14 2026 — 4" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">August 12, 2026</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-08-12-01.jpg" alt="Session Aug 12 2026 — 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-08-12-02.jpg" alt="Session Aug 12 2026 — 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-08-12-03.jpg" alt="Session Aug 12 2026 — 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-portraits/session-2026-08-12-04.jpg" alt="Session Aug 12 2026 — 4" loading="lazy" /></div>
+    </div>
   </div>
 
   <section class="gallery-cta">
