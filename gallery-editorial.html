@@ -72,7 +72,13 @@
     .gallery-intro-heading em { font-style:italic; color:var(--clay); }
     .gallery-intro-text { font-size:1rem; line-height:1.9; color:var(--umber); }
 
-    .gallery-mosaic { padding:0 64px 100px; columns:3; column-gap:6px; }
+    .session-group { padding:0 64px 72px; }
+    .session-label { font-family:'Jost',sans-serif; font-weight:200; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; display:flex; align-items:center; gap:16px; }
+    .session-label::before { content:''; display:block; width:38px; height:1px; background:var(--amber); flex-shrink:0; }
+    .gallery-mosaic { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; }
+    .mosaic-cell { background:var(--sand); overflow:hidden; aspect-ratio:2/3; }
+    .mosaic-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.4s ease; }
+    .mosaic-cell:hover img { opacity:0.88; }
     .mosaic-cell { break-inside:avoid; margin-bottom:6px; background:var(--sand); }
     .mosaic-cell img { width:100%; height:auto; display:block; transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
     .mosaic-cell:hover img { opacity:0.92; }
@@ -110,7 +116,8 @@
       .gallery-hero { height:60vh; }
       .gallery-hero-overlay { padding:24px 28px 40px; }
       .gallery-intro { padding:60px 28px 50px; }
-      .gallery-mosaic { padding:0 28px 70px; columns:1; }
+      session-group { padding:0 28px 50px; }
+      .gallery-mosaic { grid-template-columns:repeat(2, 1fr); }
             .gallery-cta { padding:70px 28px; }
       .gallery-nav-strip { padding:30px 28px; flex-direction:column; gap:18px; }
       footer { padding:60px 28px 36px; }
@@ -165,24 +172,25 @@
     <h2 class="gallery-intro-heading reveal">Vision-driven <em>imagery</em></h2>
     <p class="gallery-intro-text reveal">From brand campaigns to editorial spreads, this is photography with intention and direction. We build each shot with a concept, a mood board, and a clear vision of what the image must communicate — and then we find the light that makes it true.</p>
   </section>
-
-  <div class="gallery-mosaic">
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC02894.jpg" alt="Editorial 1" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC03244.jpg" alt="Editorial 2" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC03334.jpg" alt="Editorial 3" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC05757.jpg" alt="Editorial 4" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC05839.jpg" alt="Editorial 5" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC06005.jpg" alt="Editorial 6" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC06373.jpg" alt="Editorial 7" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC07309.jpg" alt="Editorial 8" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC07381.jpg" alt="Editorial 9" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC07789.jpg" alt="Editorial 10" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC07805.jpg" alt="Editorial 11" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC07852.jpg" alt="Editorial 12" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/DSC07919.jpg" alt="Editorial 13" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/untitled-03405 2.JPG" alt="Editorial 14" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/untitled-03521 2.JPG" alt="Editorial 15" loading="lazy" /></div>
-    <div class="mosaic-cell reveal"><img src="gallery-editorial/untitled-03587 2.JPG" alt="Editorial 16" loading="lazy" /></div>
+  <div class="session-group reveal">
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-01.jpg" alt="Editorial 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-02.jpg" alt="Editorial 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-03.jpg" alt="Editorial 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-04.jpg" alt="Editorial 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-05.jpg" alt="Editorial 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-06.jpg" alt="Editorial 6" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-07.jpg" alt="Editorial 7" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-08.jpg" alt="Editorial 8" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-09.jpg" alt="Editorial 9" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-10.jpg" alt="Editorial 10" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-11.jpg" alt="Editorial 11" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-12.jpg" alt="Editorial 12" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-13.jpg" alt="Editorial 13" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-14.jpg" alt="Editorial 14" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-15.jpg" alt="Editorial 15" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-editorial/editorial-16.jpg" alt="Editorial 16" loading="lazy" /></div>
+    </div>
   </div>
 
   <section class="gallery-cta">

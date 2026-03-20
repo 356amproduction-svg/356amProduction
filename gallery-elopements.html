@@ -72,7 +72,13 @@
     .gallery-intro-heading em { font-style:italic; color:var(--clay); }
     .gallery-intro-text { font-size:1rem; line-height:1.9; color:var(--umber); }
 
-    .gallery-mosaic { padding:0 64px 100px; columns:3; column-gap:6px; }
+    .session-group { padding:0 64px 72px; }
+    .session-label { font-family:'Jost',sans-serif; font-weight:200; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; display:flex; align-items:center; gap:16px; }
+    .session-label::before { content:''; display:block; width:38px; height:1px; background:var(--amber); flex-shrink:0; }
+    .gallery-mosaic { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; }
+    .mosaic-cell { background:var(--sand); overflow:hidden; aspect-ratio:2/3; }
+    .mosaic-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.4s ease; }
+    .mosaic-cell:hover img { opacity:0.88; }
     .mosaic-cell { break-inside:avoid; margin-bottom:6px; background:var(--sand); }
     .mosaic-cell img { width:100%; height:auto; display:block; transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
     .mosaic-cell:hover img { opacity:0.92; }
@@ -110,7 +116,8 @@
       .gallery-hero { height:60vh; }
       .gallery-hero-overlay { padding:24px 28px 40px; }
       .gallery-intro { padding:60px 28px 50px; }
-      .gallery-mosaic { padding:0 28px 70px; columns:1; }
+      session-group { padding:0 28px 50px; }
+      .gallery-mosaic { grid-template-columns:repeat(2, 1fr); }
             .gallery-cta { padding:70px 28px; }
       .gallery-nav-strip { padding:30px 28px; flex-direction:column; gap:18px; }
       footer { padding:60px 28px 36px; }
@@ -165,270 +172,125 @@
     <h2 class="gallery-intro-heading reveal">Just the two of <em>you</em></h2>
     <p class="gallery-intro-text reveal">Elopements are the most honest form of love story — stripped of expectation, full of presence. I follow couples into mountains, along coastlines, through quiet city streets, and into the wild places that feel most like them.</p>
   </section>
-
+  <div class="session-group reveal">
+    <div class="session-label">September 2</div>
     <div class="gallery-mosaic">
-    <!-- Row 1: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-01.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-02.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-03.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-04.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 2: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-05.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-06.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-07.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 3: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-08.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-09.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-10.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-11.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 4: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-12.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-13.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-14.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 5: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-15.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-16.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-17.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-18.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 6: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-19.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-20.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-21.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 7: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-22.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-23.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-24.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-25.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 8: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-26.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-27.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-28.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 9: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-29.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-30.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-31.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-32.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 10: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-33.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-34.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-35.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 11: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-36.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-37.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-38.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-39.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 12: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-40.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-41.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-42.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 13: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-43.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-44.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-45.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-46.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 14: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-47.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-48.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-49.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 15: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-50.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-51.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-52.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-53.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 16: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-54.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-55.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-56.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 17: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-57.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-58.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-59.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-60.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 18: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-61.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-62.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-63.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 19: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-64.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-65.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-66.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-67.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 20: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-68.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-69.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-70.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 21: 4 portraits -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-71.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-72.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-73.jpg" alt="Elopement portrait" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-74.jpg" alt="Elopement portrait" />
-    </div>
-    <!-- Row 22: 3 landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-75.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-76.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-77.jpg" alt="Elopement session" />
-    </div>
-    <!-- Row 23: 3 closing landscapes -->
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-78.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-79.jpg" alt="Elopement session" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-elopements/elopement-80.jpg" alt="Elopement session" />
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2018-09-02-01.jpg" alt="Elopement 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2018-09-02-02.jpg" alt="Elopement 2" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">November 2</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-01.jpg" alt="Elopement 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-02.jpg" alt="Elopement 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-03.jpg" alt="Elopement 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-04.jpg" alt="Elopement 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-05.jpg" alt="Elopement 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-06.jpg" alt="Elopement 6" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-07.jpg" alt="Elopement 7" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-08.jpg" alt="Elopement 8" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-09.jpg" alt="Elopement 9" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-10.jpg" alt="Elopement 10" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-11.jpg" alt="Elopement 11" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-12.jpg" alt="Elopement 12" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-13.jpg" alt="Elopement 13" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-14.jpg" alt="Elopement 14" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-15.jpg" alt="Elopement 15" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">October 2</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-01.jpg" alt="Elopement 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-02.jpg" alt="Elopement 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-03.jpg" alt="Elopement 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-04.jpg" alt="Elopement 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-05.jpg" alt="Elopement 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-06.jpg" alt="Elopement 6" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-07.jpg" alt="Elopement 7" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-08.jpg" alt="Elopement 8" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-09.jpg" alt="Elopement 9" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-10.jpg" alt="Elopement 10" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-11.jpg" alt="Elopement 11" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-12.jpg" alt="Elopement 12" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">June 21</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-01.jpg" alt="Elopement 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-02.jpg" alt="Elopement 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-03.jpg" alt="Elopement 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-04.jpg" alt="Elopement 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-05.jpg" alt="Elopement 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-06.jpg" alt="Elopement 6" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">January 6</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-01.jpg" alt="Elopement 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-02.jpg" alt="Elopement 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-03.jpg" alt="Elopement 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-04.jpg" alt="Elopement 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-05.jpg" alt="Elopement 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-06.jpg" alt="Elopement 6" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-07.jpg" alt="Elopement 7" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-08.jpg" alt="Elopement 8" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-09.jpg" alt="Elopement 9" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-10.jpg" alt="Elopement 10" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-11.jpg" alt="Elopement 11" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-12.jpg" alt="Elopement 12" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-13.jpg" alt="Elopement 13" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-14.jpg" alt="Elopement 14" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-15.jpg" alt="Elopement 15" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-16.jpg" alt="Elopement 16" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-17.jpg" alt="Elopement 17" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-18.jpg" alt="Elopement 18" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-19.jpg" alt="Elopement 19" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-20.jpg" alt="Elopement 20" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-21.jpg" alt="Elopement 21" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-22.jpg" alt="Elopement 22" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-23.jpg" alt="Elopement 23" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-24.jpg" alt="Elopement 24" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">June 24</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-01.jpg" alt="Elopement 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-02.jpg" alt="Elopement 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-03.jpg" alt="Elopement 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-04.jpg" alt="Elopement 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-05.jpg" alt="Elopement 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-06.jpg" alt="Elopement 6" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-07.jpg" alt="Elopement 7" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-08.jpg" alt="Elopement 8" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">April 8</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-01.jpg" alt="Elopement 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-02.jpg" alt="Elopement 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-03.jpg" alt="Elopement 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-04.jpg" alt="Elopement 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-05.jpg" alt="Elopement 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-06.jpg" alt="Elopement 6" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-07.jpg" alt="Elopement 7" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-08.jpg" alt="Elopement 8" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-09.jpg" alt="Elopement 9" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-10.jpg" alt="Elopement 10" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-11.jpg" alt="Elopement 11" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-12.jpg" alt="Elopement 12" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-13.jpg" alt="Elopement 13" loading="lazy" /></div>
     </div>
   </div>
 

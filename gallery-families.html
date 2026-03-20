@@ -72,7 +72,13 @@
     .gallery-intro-heading em { font-style:italic; color:var(--clay); }
     .gallery-intro-text { font-size:1rem; line-height:1.9; color:var(--umber); }
 
-    .gallery-mosaic { padding:0 64px 100px; columns:3; column-gap:6px; }
+    .session-group { padding:0 64px 72px; }
+    .session-label { font-family:'Jost',sans-serif; font-weight:200; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; display:flex; align-items:center; gap:16px; }
+    .session-label::before { content:''; display:block; width:38px; height:1px; background:var(--amber); flex-shrink:0; }
+    .gallery-mosaic { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; }
+    .mosaic-cell { background:var(--sand); overflow:hidden; aspect-ratio:2/3; }
+    .mosaic-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.4s ease; }
+    .mosaic-cell:hover img { opacity:0.88; }
     .mosaic-cell { break-inside:avoid; margin-bottom:6px; background:var(--sand); }
     .mosaic-cell img { width:100%; height:auto; display:block; transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
     .mosaic-cell:hover img { opacity:0.92; }
@@ -110,7 +116,8 @@
       .gallery-hero { height:60vh; }
       .gallery-hero-overlay { padding:24px 28px 40px; }
       .gallery-intro { padding:60px 28px 50px; }
-      .gallery-mosaic { padding:0 28px 70px; columns:1; }
+      session-group { padding:0 28px 50px; }
+      .gallery-mosaic { grid-template-columns:repeat(2, 1fr); }
             .gallery-cta { padding:70px 28px; }
       .gallery-nav-strip { padding:30px 28px; flex-direction:column; gap:18px; }
       footer { padding:60px 28px 36px; }
@@ -165,85 +172,71 @@
     <h2 class="gallery-intro-heading reveal">The <em>everyday</em> is the extraordinary</h2>
     <p class="gallery-intro-text reveal">My family sessions are documentary in spirit — I'm not asking you to pose, I'm asking you to play, to run, to be exactly as loud and messy and joyful as you actually are. These images will mean more in 20 years than any carefully composed formal portrait.</p>
   </section>
+  <div class="session-group reveal">
+    <div class="session-label">November 29</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-families/session-2023-11-29-01.jpg" alt="Family 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2023-11-29-02.jpg" alt="Family 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2023-11-29-03.jpg" alt="Family 3" loading="lazy" /></div>
+    </div>
+  </div>
 
-  <div class="gallery-mosaic">
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-01.jpg" alt="Family portrait 1" loading="lazy" />
+  <div class="session-group reveal">
+    <div class="session-label">May 21</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-families/session-2025-05-21-01.jpg" alt="Family 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2025-05-21-02.jpg" alt="Family 2" loading="lazy" /></div>
     </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-02.jpg" alt="Family portrait 2" loading="lazy" />
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">April 29</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-04-29-01.jpg" alt="Family 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-04-29-02.jpg" alt="Family 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-04-29-03.jpg" alt="Family 3" loading="lazy" /></div>
     </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-03.jpg" alt="Family portrait 3" loading="lazy" />
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">May 4</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-04-01.jpg" alt="Family 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-04-02.jpg" alt="Family 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-04-03.jpg" alt="Family 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-04-04.jpg" alt="Family 4" loading="lazy" /></div>
     </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-04.jpg" alt="Family portrait 4" loading="lazy" />
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">May 5</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-05-01.jpg" alt="Family 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-05-02.jpg" alt="Family 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-05-03.jpg" alt="Family 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-05-04.jpg" alt="Family 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-05-05-05.jpg" alt="Family 5" loading="lazy" /></div>
     </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-05.jpg" alt="Family portrait 5" loading="lazy" />
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">September 1</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-01.jpg" alt="Family 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-02.jpg" alt="Family 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-03.jpg" alt="Family 3" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-04.jpg" alt="Family 4" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-05.jpg" alt="Family 5" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-06.jpg" alt="Family 6" loading="lazy" /></div>
     </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-06.jpg" alt="Family portrait 6" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-07.jpg" alt="Family portrait 7" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-08.jpg" alt="Family portrait 8" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-09.jpg" alt="Family portrait 9" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-10.jpg" alt="Family portrait 10" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-11.jpg" alt="Family portrait 11" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-12.jpg" alt="Family portrait 12" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-13.jpg" alt="Family portrait 13" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-14.jpg" alt="Family portrait 14" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-15.jpg" alt="Family portrait 15" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-16.jpg" alt="Family portrait 16" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-17.jpg" alt="Family portrait 17" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-18.jpg" alt="Family portrait 18" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-19.jpg" alt="Family portrait 19" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-20.jpg" alt="Family portrait 20" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-21.jpg" alt="Family portrait 21" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-22.jpg" alt="Family portrait 22" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-23.jpg" alt="Family portrait 23" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-24.jpg" alt="Family portrait 24" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-25.jpg" alt="Family portrait 25" loading="lazy" />
-    </div>
-    <div class="mosaic-cell reveal">
-      <img src="gallery-families/families-26.jpg" alt="Family portrait 26" loading="lazy" />
+  </div>
+
+  <div class="session-group reveal">
+    <div class="session-label">September 3</div>
+    <div class="gallery-mosaic">
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-03-01.jpg" alt="Family 1" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-03-02.jpg" alt="Family 2" loading="lazy" /></div>
+      <div class="mosaic-cell"><img src="gallery-families/session-2026-09-03-03.jpg" alt="Family 3" loading="lazy" /></div>
     </div>
   </div>
 
