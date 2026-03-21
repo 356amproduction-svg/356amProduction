@@ -56,7 +56,7 @@
     .section-label { display:flex; align-items:center; gap:16px; font-family:'Jost',sans-serif; font-weight:200; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:22px; }
     .section-label::before { content:''; display:block; width:38px; height:1px; background:var(--amber); flex-shrink:0; }
 
-    .gallery-hero { position:relative; height:82vh; min-height:520px; overflow:hidden; }
+    .gallery-hero { position:relative; height:82vh; min-height:520px; overflow:hidden; background-image:url('p-elopements-hero.jpg'); background-size:cover; background-position:center; }
     .gallery-hero-img { width:100%; height:100%; object-fit:cover; display:block; transform-origin:center; transition:transform 0.1s linear; }
     .gallery-hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,6,4,0.78) 0%, rgba(10,6,4,0.2) 50%, transparent 100%); display:flex; flex-direction:column; justify-content:space-between; padding:36px 64px 56px; }
     .back-btn { display:inline-flex; align-items:center; gap:10px; font-family:'Jost',sans-serif; font-weight:300; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--taupe); text-decoration:none; transition:color 0.3s ease; opacity:0; animation:fadeUp 0.7s ease 0.2s forwards; }
@@ -151,7 +151,6 @@
   </header>
 
   <section class="gallery-hero">
-    <img class="gallery-hero-img" src="gallery-elopements/elopement-01.jpg" alt="Elopements — 3:56am Production" />
     <div class="gallery-hero-overlay">
       <a href="galleries.html" class="back-btn">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -170,7 +169,7 @@
     <p class="gallery-intro-text reveal">Elopements are the most honest form of love story — stripped of expectation, full of presence. I follow couples into mountains, along coastlines, through quiet city streets, and into the wild places that feel most like them.</p>
   </section>
   <div class="session-group reveal">
-    <div class="session-label">September 2</div>
+    <div class="session-label">September 2, 2018</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-elopements/session-2018-09-02-01.jpg" alt="Elopement 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-elopements/session-2018-09-02-02.jpg" alt="Elopement 2" loading="lazy" /></div>
@@ -178,7 +177,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">November 2</div>
+    <div class="session-label">November 2, 2019</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-01.jpg" alt="Elopement 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-elopements/session-2019-11-02-02.jpg" alt="Elopement 2" loading="lazy" /></div>
@@ -199,7 +198,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">October 2</div>
+    <div class="session-label">October 2, 2021</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-01.jpg" alt="Elopement 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-elopements/session-2021-10-02-02.jpg" alt="Elopement 2" loading="lazy" /></div>
@@ -217,7 +216,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">June 21</div>
+    <div class="session-label">June 21, 2022</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-01.jpg" alt="Elopement 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-elopements/session-2022-06-21-02.jpg" alt="Elopement 2" loading="lazy" /></div>
@@ -229,7 +228,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">January 6</div>
+    <div class="session-label">January 6, 2023</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-01.jpg" alt="Elopement 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-elopements/session-2023-01-06-02.jpg" alt="Elopement 2" loading="lazy" /></div>
@@ -259,7 +258,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">June 24</div>
+    <div class="session-label">June 24, 2024</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-01.jpg" alt="Elopement 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-elopements/session-2024-06-24-02.jpg" alt="Elopement 2" loading="lazy" /></div>
@@ -273,7 +272,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">April 8</div>
+    <div class="session-label">April 8, 2025</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-01.jpg" alt="Elopement 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-elopements/session-2025-04-08-02.jpg" alt="Elopement 2" loading="lazy" /></div>
@@ -357,6 +356,8 @@
 
     const heroImg=document.querySelector('.gallery-hero-img');
     if(heroImg){ window.addEventListener('scroll',()=>{ if(window.scrollY<window.innerHeight*1.5) heroImg.style.transform='translateY('+(window.scrollY*0.28)+'px)'; },{passive:true}); }
+
+    (function(){const groups=[...document.querySelectorAll('.session-group')];if(groups.length<2)return;const anchor=groups[0].previousElementSibling;const parent=groups[0].parentElement;groups.sort((a,b)=>{const d=el=>{const img=el.querySelector('img');if(!img)return'';const m=(img.getAttribute('src')||'').match(/session-(\d{4}-\d{2}-\d{2})/);return m?m[1]:'';};return d(b).localeCompare(d(a));});const frag=document.createDocumentFragment();groups.forEach(g=>{g.remove();frag.appendChild(g);});if(anchor)anchor.after(frag);else parent.prepend(frag);})();
 
     const obs=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{

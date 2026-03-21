@@ -170,7 +170,7 @@
     <p class="gallery-intro-text reveal">My family sessions are documentary in spirit — I'm not asking you to pose, I'm asking you to play, to run, to be exactly as loud and messy and joyful as you actually are. These images will mean more in 20 years than any carefully composed formal portrait.</p>
   </section>
   <div class="session-group reveal">
-    <div class="session-label">November 29</div>
+    <div class="session-label">November 29, 2023</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-families/session-2023-11-29-01.jpg" alt="Family 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-families/session-2023-11-29-02.jpg" alt="Family 2" loading="lazy" /></div>
@@ -179,7 +179,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">May 21</div>
+    <div class="session-label">May 21, 2025</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-families/session-2025-05-21-01.jpg" alt="Family 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-families/session-2025-05-21-02.jpg" alt="Family 2" loading="lazy" /></div>
@@ -187,7 +187,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">April 29</div>
+    <div class="session-label">April 29, 2026</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-families/session-2026-04-29-01.jpg" alt="Family 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-families/session-2026-04-29-02.jpg" alt="Family 2" loading="lazy" /></div>
@@ -196,7 +196,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">May 4</div>
+    <div class="session-label">May 4, 2026</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-families/session-2026-05-04-01.jpg" alt="Family 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-families/session-2026-05-04-02.jpg" alt="Family 2" loading="lazy" /></div>
@@ -206,7 +206,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">May 5</div>
+    <div class="session-label">May 5, 2026</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-families/session-2026-05-05-01.jpg" alt="Family 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-families/session-2026-05-05-02.jpg" alt="Family 2" loading="lazy" /></div>
@@ -217,7 +217,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">September 1</div>
+    <div class="session-label">September 1, 2026</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-01.jpg" alt="Family 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-families/session-2026-09-01-02.jpg" alt="Family 2" loading="lazy" /></div>
@@ -229,7 +229,7 @@
   </div>
 
   <div class="session-group reveal">
-    <div class="session-label">September 3</div>
+    <div class="session-label">September 3, 2026</div>
     <div class="gallery-mosaic">
       <div class="mosaic-cell"><img src="gallery-families/session-2026-09-03-01.jpg" alt="Family 1" loading="lazy" /></div>
       <div class="mosaic-cell"><img src="gallery-families/session-2026-09-03-02.jpg" alt="Family 2" loading="lazy" /></div>
@@ -303,6 +303,8 @@
 
     const heroImg=document.querySelector('.gallery-hero-img');
     if(heroImg){ window.addEventListener('scroll',()=>{ if(window.scrollY<window.innerHeight*1.5) heroImg.style.transform='translateY('+(window.scrollY*0.28)+'px)'; },{passive:true}); }
+
+    (function(){const groups=[...document.querySelectorAll('.session-group')];if(groups.length<2)return;const anchor=groups[0].previousElementSibling;const parent=groups[0].parentElement;groups.sort((a,b)=>{const d=el=>{const img=el.querySelector('img');if(!img)return'';const m=(img.getAttribute('src')||'').match(/session-(\d{4}-\d{2}-\d{2})/);return m?m[1]:'';};return d(b).localeCompare(d(a));});const frag=document.createDocumentFragment();groups.forEach(g=>{g.remove();frag.appendChild(g);});if(anchor)anchor.after(frag);else parent.prepend(frag);})();
 
     const obs=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{

@@ -257,6 +257,8 @@
     const heroImg=document.querySelector('.gallery-hero-img');
     if(heroImg){ window.addEventListener('scroll',()=>{ if(window.scrollY<window.innerHeight*1.5) heroImg.style.transform='translateY('+(window.scrollY*0.28)+'px)'; },{passive:true}); }
 
+    (function(){const groups=[...document.querySelectorAll('.session-group')];if(groups.length<2)return;const anchor=groups[0].previousElementSibling;const parent=groups[0].parentElement;groups.sort((a,b)=>{const d=el=>{const img=el.querySelector('img');if(!img)return'';const m=(img.getAttribute('src')||'').match(/session-(\d{4}-\d{2}-\d{2})/);return m?m[1]:'';};return d(b).localeCompare(d(a));});const frag=document.createDocumentFragment();groups.forEach(g=>{g.remove();frag.appendChild(g);});if(anchor)anchor.after(frag);else parent.prepend(frag);})();
+
     const obs=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(!entry.isIntersecting) return;
