@@ -75,8 +75,8 @@
     .session-group { padding:0 64px 72px; }
     .session-label { font-family:'Jost',sans-serif; font-weight:200; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; display:flex; align-items:center; gap:16px; }
     .session-label::before { content:''; display:block; width:38px; height:1px; background:var(--amber); flex-shrink:0; }
-    .gallery-mosaic { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; align-items:start; }
-    .mosaic-cell { background:var(--sand); overflow:hidden; }
+    .gallery-mosaic { columns:4; column-gap:6px; }
+    .mosaic-cell { break-inside:avoid; margin-bottom:6px; background:var(--sand); overflow:hidden; display:block; }
     .mosaic-cell img { width:100%; height:auto; display:block; transition:opacity 0.4s ease; }
     .mosaic-cell:hover img { opacity:0.88; }
 
@@ -114,7 +114,7 @@
       .gallery-hero-overlay { padding:24px 28px 40px; }
       .gallery-intro { padding:60px 28px 50px; }
       .session-group { padding:0 28px 50px; }
-      .gallery-mosaic { grid-template-columns:repeat(2, 1fr); }
+      .gallery-mosaic { columns:2; }
             .gallery-cta { padding:70px 28px; }
       .gallery-nav-strip { padding:30px 28px; flex-direction:column; gap:18px; }
       footer { padding:60px 28px 36px; }
