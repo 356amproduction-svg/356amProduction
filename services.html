@@ -88,7 +88,7 @@
     .nav-links a { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bark); text-decoration: none; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--amber); transition: width 0.3s ease; }
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-    .nav-cta { padding: 9px 22px !important; background: var(--amber) !important; color: #fff !important; }
+    .nav-cta { padding: 9px 22px !important; background: var(--amber) !important; color: #fff !important; white-space: nowrap; }
     .nav-cta::after { display: none !important; }
     .nav-cta:hover { background: var(--forest) !important; }
 
@@ -639,7 +639,6 @@
         <input type="hidden" name="time_preference" id="h_time"    value="" />
         <input type="hidden" name="start_time"      id="h_start"   value="" />
         <input type="hidden" name="end_time"        id="h_end"     value="" />
-        <input type="hidden" name="skin_retouching" id="h_retouch" value="" />
         <input type="hidden" name="deposit_due"     id="h_deposit" value="" />
         <input type="hidden" name="estimated_total" id="h_total"   value="" />
 
@@ -821,21 +820,6 @@
           </div>
         </div>
 
-        <!-- ── STEP 06: Skin Retouching ── -->
-        <div class="step-block reveal">
-          <div class="step-meta">
-            <div class="step-num-badge">06</div>
-            <div class="step-label-text">Add-ons</div>
-          </div>
-          <h2 class="step-heading">Skin <em>retouching</em></h2>
-          <p class="step-sub">Optional add-on. All sessions include standard color grading — skin retouching is an additional service.</p>
-          <div class="pill-group" id="retouchGroup">
-            <div class="pill" data-retouch="15 Photos Retouched" data-price="70">15 Photos</div>
-            <div class="pill" data-retouch="25 Photos Retouched" data-price="120">25 Photos</div>
-            <div class="pill" data-retouch="50 Photos Retouched" data-price="250">50 Photos</div>
-          </div>
-        </div>
-
         <!-- ── STEP 07: Terms ── -->
         <div class="step-block reveal">
           <div class="step-meta">
@@ -938,11 +922,6 @@
         <span class="sum-label">End Time</span>
         <span class="sum-val" id="sumEnd">—</span>
       </div>
-      <div class="summary-row">
-        <span class="sum-label">Skin Retouching</span>
-        <span class="sum-val" id="sumRetouch">None</span>
-      </div>
-
       <div class="summary-total-block">
         <div class="summary-total-label">Estimated Total</div>
         <div class="summary-total-price" id="sumTotal">—</div>
@@ -1035,7 +1014,7 @@
       length:'', lengthPrice:0, lengthHours:0,
       location:'',
       date:'', time:'', start:'', endTime:'',
-      retouch:'', retouchPrice:0
+
     };
 
     function fmt(n){ return '$'+n.toLocaleString(); }
@@ -1061,7 +1040,7 @@
     }
 
     function updateSummary() {
-      const total = state.price + state.lengthPrice + state.retouchPrice;
+      const total = state.price + state.lengthPrice;
       const deposit = total > 0 ? Math.round(total * 0.30) : 0;
       const remaining = total - deposit;
 
@@ -1072,7 +1051,6 @@
       document.getElementById('sumTime').textContent     = state.time     || '—';
       document.getElementById('sumStart').textContent    = state.start    || '—';
       document.getElementById('sumEnd').textContent      = state.endTime  || '—';
-      document.getElementById('sumRetouch').textContent  = state.retouch  || 'None';
       document.getElementById('sumTotal').textContent    = total > 0 ? fmt(total) : '—';
       document.getElementById('sumDeposit').textContent  = deposit > 0 ? fmt(deposit) : '—';
 
@@ -1092,7 +1070,6 @@
       setHidden('h_time',    state.time);
       setHidden('h_start',   state.start);
       setHidden('h_end',     state.endTime);
-      setHidden('h_retouch', state.retouch);
       setHidden('h_deposit', deposit > 0 ? fmt(deposit) : '');
       setHidden('h_total',   total > 0 ? fmt(total) : '');
 
@@ -1167,22 +1144,6 @@
         pill.classList.add('selected');
         state.time = pill.dataset.time;
         populateStartTimes(timeHours[pill.dataset.time] || []);
-      });
-    });
-
-    // ── Skin retouching (toggle) ──
-    document.querySelectorAll('#retouchGroup .pill').forEach(pill=>{
-      pill.addEventListener('click',()=>{
-        if(pill.classList.contains('selected')) {
-          pill.classList.remove('selected');
-          state.retouch = ''; state.retouchPrice = 0;
-        } else {
-          document.querySelectorAll('#retouchGroup .pill').forEach(p=>p.classList.remove('selected'));
-          pill.classList.add('selected');
-          state.retouch      = pill.dataset.retouch;
-          state.retouchPrice = parseInt(pill.dataset.price) || 0;
-        }
-        updateSummary();
       });
     });
 
