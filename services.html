@@ -27,7 +27,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       cursor: none;
@@ -545,6 +545,8 @@
     }
     @media (max-width: 768px) {
       nav { padding: 18px 24px; }
+      .nav-links { gap: 18px; }
+      .nav-links a { letter-spacing: 0.08em; }
       .page-hero { padding: 72px 24px 60px; }
       .booking-wrap { padding: 40px 24px 80px; }
       .shoot-grid { grid-template-columns: repeat(2, 1fr); }
@@ -554,6 +556,10 @@
       .footer-brand-logo, .footer-links, .footer-col-title { display: none; }
     }
     @media (max-width: 480px) {
+      nav { padding: 14px 16px; }
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 0.62rem; letter-spacing: 0.05em; }
+      .nav-cta { padding: 7px 14px !important; font-size: 0.62rem; }
       .shoot-grid { grid-template-columns: repeat(2, 1fr); }
       .page-hero-steps { display: none; }
     }
