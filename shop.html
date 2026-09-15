@@ -10,19 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --cream: #f1e7e1;
-      --sand: #e8ddd6;
-      --taupe: #5f5553;
-      --clay: #c5653a;
-      --umber: #415f58;
-      --bark: #231f20;
-      --warm-white: #faf6f3;
-      --sage: #415f58;
-      --amber: #c5653a;
-      --tangerine: #d4784a;
-      --forest: #415f58;
-      --moss: #506e64;
-      --navy: #231f20;
+      --cream: #f1e1e7;
+      --sand: #e8d6dc;
+      --taupe: #5f5358;
+      --clay: #c8376f;
+      --umber: #795c27;
+      --bark: #231f21;
+      --warm-white: #faf3f5;
+      --sage: #795c27;
+      --amber: #c8376f;
+      --tangerine: #d7477d;
+      --forest: #795c27;
+      --moss: #8b6a33;
+      --navy: #231f21;
       --dark: #1a1618;
     }
 
@@ -55,10 +55,10 @@
       transition: transform 0.15s ease;
       display: flex; align-items: center; justify-content: center;
     }
-    #cursor-dot svg { width: 30px; height: 30px; fill: none; stroke: var(--umber); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 3px rgba(65,95,88,0.35)); transition: stroke 0.2s ease; }
+    #cursor-dot svg { width: 30px; height: 30px; fill: none; stroke: var(--umber); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 3px rgba(121,92,39,0.35)); transition: stroke 0.2s ease; }
     #cursor-ring {
       position: fixed; width: 52px; height: 52px;
-      border: 1px solid rgba(65,95,88,0.45); border-radius: 50%;
+      border: 1px solid rgba(121,92,39,0.45); border-radius: 50%;
       pointer-events: none; z-index: 99998;
       transform: translate(-50%,-50%);
       transition: border-color 0.3s ease, transform 0.3s ease;
@@ -75,11 +75,11 @@
     .site-header {
       position: sticky; top: 0; z-index: 1000;
       background: var(--warm-white);
-      border-bottom: 1px solid rgba(35,31,32,0.08);
-      box-shadow: 0 2px 16px rgba(35,31,32,0.05);
+      border-bottom: 1px solid rgba(35,31,33,0.08);
+      box-shadow: 0 2px 16px rgba(35,31,33,0.05);
       transition: box-shadow 0.4s ease;
     }
-    .site-header.scrolled { box-shadow: 0 4px 28px rgba(35,31,32,0.1); }
+    .site-header.scrolled { box-shadow: 0 4px 28px rgba(35,31,33,0.1); }
     .top-strip { height: 3px; background: linear-gradient(90deg, var(--amber) 0%, var(--tangerine) 35%, var(--moss) 65%, var(--forest) 100%); }
 
     nav { padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; }
@@ -97,7 +97,7 @@
       position: relative;
       display: flex; align-items: center; gap: 8px;
       padding: 9px 18px;
-      border: 1px solid rgba(35,31,32,0.15);
+      border: 1px solid rgba(35,31,33,0.15);
       background: none;
       cursor: pointer;
       font-family: 'Jost', sans-serif;
@@ -165,8 +165,8 @@
     .shop-hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 20% 80%, rgba(197,101,58,0.14) 0%, transparent 55%),
-                  radial-gradient(ellipse at 75% 25%, rgba(65,95,88,0.12) 0%, transparent 55%);
+      background: radial-gradient(ellipse at 20% 80%, rgba(200,55,111,0.14) 0%, transparent 55%),
+                  radial-gradient(ellipse at 75% 25%, rgba(121,92,39,0.12) 0%, transparent 55%);
     }
     .shop-hero-inner { position: relative; max-width: 680px; }
     .shop-hero-eyebrow {
@@ -189,7 +189,7 @@
       animation: shimmer 4s linear 1.5s infinite;
     }
     .shop-hero-sub {
-      font-size: 0.95rem; line-height: 1.9; color: rgba(241,231,225,0.65); max-width: 440px;
+      font-size: 0.95rem; line-height: 1.9; color: rgba(241,225,231,0.65); max-width: 440px;
       opacity: 0; animation: fadeUp 0.9s ease 0.6s forwards;
     }
     .shop-hero-badges {
@@ -199,8 +199,8 @@
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 8px 16px;
-      border: 1px solid rgba(241,231,225,0.15);
-      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(241,231,225,0.55);
+      border: 1px solid rgba(241,225,231,0.15);
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(241,225,231,0.55);
     }
     .hero-badge svg { width: 13px; height: 13px; fill: none; stroke: var(--amber); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -210,8 +210,8 @@
       top: 57px; /* height of nav */
       z-index: 500;
       background: var(--warm-white);
-      border-bottom: 1px solid rgba(35,31,32,0.08);
-      box-shadow: 0 2px 12px rgba(35,31,32,0.04);
+      border-bottom: 1px solid rgba(35,31,33,0.08);
+      box-shadow: 0 2px 12px rgba(35,31,33,0.04);
     }
     .org-tabs {
       padding: 0 64px;
@@ -252,7 +252,7 @@
       font-family: 'Jost', sans-serif;
       font-size: 0.58rem; font-weight: 400;
       color: var(--taupe);
-      background: rgba(35,31,32,0.06);
+      background: rgba(35,31,33,0.06);
       border-radius: 20px;
       padding: 2px 8px;
       min-width: 22px;
@@ -268,7 +268,7 @@
     /* Left divider before first tab */
     .org-tab-divider {
       width: 1px;
-      background: rgba(35,31,32,0.08);
+      background: rgba(35,31,33,0.08);
       margin: 14px 0;
       flex-shrink: 0;
     }
@@ -278,7 +278,7 @@
       padding: 0 28px 0 0;
       display: flex; align-items: center;
       font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: rgba(95,85,83,0.45);
+      color: rgba(95,83,88,0.45);
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -306,10 +306,10 @@
     .product-card {
       display: flex; flex-direction: column;
       background: #fff;
-      border: 1px solid rgba(35,31,32,0.07);
+      border: 1px solid rgba(35,31,33,0.07);
       transition: box-shadow 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1);
     }
-    .product-card:hover { box-shadow: 0 20px 56px rgba(35,31,32,0.1); transform: translateY(-4px); }
+    .product-card:hover { box-shadow: 0 20px 56px rgba(35,31,33,0.1); transform: translateY(-4px); }
 
     .product-img-wrap {
       position: relative; overflow: hidden;
@@ -332,11 +332,11 @@
 
     .product-img-overlay {
       position: absolute; inset: 0;
-      background: rgba(35,31,32,0.0);
+      background: rgba(35,31,33,0.0);
       display: flex; align-items: center; justify-content: center;
       transition: background 0.35s ease;
     }
-    .product-card:hover .product-img-overlay { background: rgba(35,31,32,0.06); }
+    .product-card:hover .product-img-overlay { background: rgba(35,31,33,0.06); }
     .product-quick-add {
       opacity: 0; transform: translateY(8px);
       transition: opacity 0.3s ease, transform 0.3s ease;
@@ -393,17 +393,17 @@
     .info-item { display: flex; align-items: flex-start; gap: 22px; }
     .info-icon {
       width: 44px; height: 44px; flex-shrink: 0;
-      background: rgba(241,231,225,0.06);
+      background: rgba(241,225,231,0.06);
       display: flex; align-items: center; justify-content: center;
     }
     .info-icon svg { width: 20px; height: 20px; fill: none; stroke: var(--amber); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
     .info-title { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); margin-bottom: 6px; }
-    .info-text { font-size: 0.82rem; line-height: 1.7; color: rgba(241,231,225,0.5); }
+    .info-text { font-size: 0.82rem; line-height: 1.7; color: rgba(241,225,231,0.5); }
 
     /* ── CART DRAWER ── */
     .cart-overlay {
       position: fixed; inset: 0;
-      background: rgba(35,31,32,0.55);
+      background: rgba(35,31,33,0.55);
       z-index: 9000;
       opacity: 0; visibility: hidden;
       transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -418,13 +418,13 @@
       display: flex; flex-direction: column;
       transform: translateX(100%);
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
-      box-shadow: -16px 0 64px rgba(35,31,32,0.15);
+      box-shadow: -16px 0 64px rgba(35,31,33,0.15);
     }
     .cart-drawer.open { transform: translateX(0); }
 
     .cart-header {
       padding: 28px 32px;
-      border-bottom: 1px solid rgba(35,31,32,0.08);
+      border-bottom: 1px solid rgba(35,31,33,0.08);
       display: flex; align-items: center; justify-content: space-between;
     }
     .cart-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--bark); }
@@ -453,7 +453,7 @@
     .cart-item {
       display: flex; gap: 16px; align-items: flex-start;
       padding: 20px 0;
-      border-bottom: 1px solid rgba(35,31,32,0.07);
+      border-bottom: 1px solid rgba(35,31,33,0.07);
     }
     .cart-item:last-child { border-bottom: none; }
     .cart-item-thumb {
@@ -468,7 +468,7 @@
     .cart-item-meta { font-size: 0.72rem; color: var(--taupe); letter-spacing: 0.08em; margin-bottom: 12px; }
     .cart-item-qty {
       display: flex; align-items: center; gap: 0;
-      border: 1px solid rgba(35,31,32,0.12); width: fit-content;
+      border: 1px solid rgba(35,31,33,0.12); width: fit-content;
     }
     .qty-btn {
       width: 30px; height: 30px;
@@ -478,14 +478,14 @@
       transition: background 0.2s;
     }
     .qty-btn:hover { background: var(--sand); }
-    .qty-num { width: 34px; text-align: center; font-size: 0.8rem; border-left: 1px solid rgba(35,31,32,0.12); border-right: 1px solid rgba(35,31,32,0.12); padding: 6px 0; }
+    .qty-num { width: 34px; text-align: center; font-size: 0.8rem; border-left: 1px solid rgba(35,31,33,0.12); border-right: 1px solid rgba(35,31,33,0.12); padding: 6px 0; }
     .cart-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--bark); flex-shrink: 0; }
-    .cart-remove { background: none; border: none; cursor: pointer; color: rgba(95,85,83,0.4); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 0; margin-top: 8px; display: block; transition: color 0.2s; }
+    .cart-remove { background: none; border: none; cursor: pointer; color: rgba(95,83,88,0.4); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 0; margin-top: 8px; display: block; transition: color 0.2s; }
     .cart-remove:hover { color: var(--clay); }
 
     .cart-footer {
       padding: 24px 32px 32px;
-      border-top: 1px solid rgba(35,31,32,0.08);
+      border-top: 1px solid rgba(35,31,33,0.08);
     }
     .cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
@@ -507,7 +507,7 @@
     /* ── CHECKOUT MODAL ── */
     .checkout-overlay {
       position: fixed; inset: 0;
-      background: rgba(35,31,32,0.7);
+      background: rgba(35,31,33,0.7);
       z-index: 9500;
       opacity: 0; visibility: hidden;
       transition: opacity 0.35s ease, visibility 0.35s ease;
@@ -547,9 +547,9 @@
       margin-bottom: 32px;
     }
     .checkout-summary-title { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest); margin-bottom: 14px; }
-    .checkout-summary-item { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--bark); padding: 6px 0; border-bottom: 1px solid rgba(35,31,32,0.07); }
+    .checkout-summary-item { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--bark); padding: 6px 0; border-bottom: 1px solid rgba(35,31,33,0.07); }
     .checkout-summary-item:last-of-type { border-bottom: none; }
-    .checkout-summary-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(35,31,32,0.1); }
+    .checkout-summary-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(35,31,33,0.1); }
     .checkout-summary-total-label { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--taupe); }
     .checkout-summary-total-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--bark); }
 
@@ -585,7 +585,7 @@
     .checkout-success.show { display: flex; }
     .checkout-success-icon {
       width: 64px; height: 64px; border-radius: 50%;
-      background: rgba(65,95,88,0.1); border: 1.5px solid rgba(65,95,88,0.3);
+      background: rgba(121,92,39,0.1); border: 1.5px solid rgba(121,92,39,0.3);
       display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
     }
     .checkout-success-icon svg { width: 26px; height: 26px; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -594,7 +594,7 @@
 
     /* ── FOOTER ── */
     footer { background: var(--bark); padding: 88px 64px 44px; }
-    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 64px; padding-bottom: 64px; border-bottom: 1px solid rgba(196,180,154,0.12); margin-bottom: 36px; }
+    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 64px; padding-bottom: 64px; border-bottom: 1px solid rgba(197,153,165,0.12); margin-bottom: 36px; }
     .footer-brand-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--cream); letter-spacing: 0.07em; margin-bottom: 18px; }
     .footer-brand-text { font-size: 0.84rem; line-height: 1.85; color: var(--taupe); max-width: 290px; }
     .footer-col-title { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--clay); margin-bottom: 26px; }
@@ -639,7 +639,7 @@
     ══════════════════════════════ */
     .pdp-overlay {
       position: fixed; inset: 0;
-      background: rgba(35,31,32,0.62);
+      background: rgba(35,31,33,0.62);
       z-index: 8000;
       opacity: 0; visibility: hidden;
       transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -663,7 +663,7 @@
     /* Drag handle */
     .pdp-handle {
       width: 40px; height: 4px;
-      background: rgba(35,31,32,0.12);
+      background: rgba(35,31,33,0.12);
       border-radius: 2px;
       margin: 14px auto 0;
       flex-shrink: 0;
@@ -719,7 +719,7 @@
       position: absolute; top: 20px; right: 24px;
       z-index: 10;
       width: 38px; height: 38px;
-      background: rgba(35,31,32,0.06);
+      background: rgba(35,31,33,0.06);
       border: none; border-radius: 50%; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       color: var(--bark); font-size: 1rem;
@@ -741,7 +741,7 @@
       display: flex; align-items: baseline; gap: 14px;
       margin-bottom: 22px;
       padding-bottom: 22px;
-      border-bottom: 1px solid rgba(35,31,32,0.08);
+      border-bottom: 1px solid rgba(35,31,33,0.08);
     }
     .pdp-price {
       font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400;
@@ -760,13 +760,13 @@
     .pdp-specs {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 0;
-      border: 1px solid rgba(35,31,32,0.08);
+      border: 1px solid rgba(35,31,33,0.08);
       margin-bottom: 30px;
     }
     .pdp-spec {
       padding: 13px 16px;
-      border-bottom: 1px solid rgba(35,31,32,0.07);
-      border-right: 1px solid rgba(35,31,32,0.07);
+      border-bottom: 1px solid rgba(35,31,33,0.07);
+      border-right: 1px solid rgba(35,31,33,0.07);
     }
     .pdp-spec:nth-child(even) { border-right: none; }
     .pdp-spec:nth-last-child(-n+2) { border-bottom: none; }
@@ -808,7 +808,7 @@
     }
     .pdp-qty {
       display: flex; align-items: center;
-      border: 1.5px solid rgba(35,31,32,0.14);
+      border: 1.5px solid rgba(35,31,33,0.14);
     }
     .pdp-qty-btn {
       width: 40px; height: 48px;
@@ -820,8 +820,8 @@
     .pdp-qty-btn:hover { background: var(--sand); }
     .pdp-qty-num {
       width: 44px; text-align: center; font-size: 0.88rem;
-      border-left: 1.5px solid rgba(35,31,32,0.12);
-      border-right: 1.5px solid rgba(35,31,32,0.12);
+      border-left: 1.5px solid rgba(35,31,33,0.12);
+      border-right: 1.5px solid rgba(35,31,33,0.12);
       height: 48px; display: flex; align-items: center; justify-content: center;
     }
     .pdp-add-btn {
@@ -878,7 +878,7 @@
       position: absolute; top: 50%; transform: translateY(-50%);
       z-index: 5;
       width: 38px; height: 38px;
-      background: rgba(250,246,243,0.88);
+      background: rgba(250,243,245,0.88);
       border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.2s;
@@ -1063,33 +1063,33 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg2" cx="50%" cy="50%" r="60%">
-                <stop offset="0%" stop-color="#e8ddd6"/>
-                <stop offset="100%" stop-color="#d4c8be"/>
+                <stop offset="0%" stop-color="#e8d6dc"/>
+                <stop offset="100%" stop-color="#d5bdc5"/>
               </radialGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg2)"/>
             <!-- Aperture blades -->
             <g transform="translate(150,150)">
-              <g transform="rotate(0)">   <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
-              <g transform="rotate(45)">  <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
-              <g transform="rotate(90)">  <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
-              <g transform="rotate(135)"> <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
-              <g transform="rotate(180)"> <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
-              <g transform="rotate(225)"> <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
-              <g transform="rotate(270)"> <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
-              <g transform="rotate(315)"> <ellipse rx="58" ry="18" fill="#231f20" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(0)">   <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(45)">  <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(90)">  <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(135)"> <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(180)"> <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(225)"> <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(270)"> <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
+              <g transform="rotate(315)"> <ellipse rx="58" ry="18" fill="#231f21" opacity="0.88" transform="translate(0,-40)"/></g>
               <!-- Outer ring -->
-              <circle r="88" fill="none" stroke="#4a3728" stroke-width="5"/>
+              <circle r="88" fill="none" stroke="#4b2733" stroke-width="5"/>
               <!-- Inner aperture opening -->
               <circle r="32" fill="#1a1618"/>
-              <circle r="28" fill="none" stroke="rgba(197,101,58,0.4)" stroke-width="1.5"/>
+              <circle r="28" fill="none" stroke="rgba(200,55,111,0.4)" stroke-width="1.5"/>
               <!-- Center highlight -->
-              <circle r="8" fill="rgba(197,101,58,0.25)"/>
+              <circle r="8" fill="rgba(200,55,111,0.25)"/>
             </g>
             <!-- Mount holes -->
-            <circle cx="150" cy="38" r="5" fill="#4a3728"/>
-            <circle cx="150" cy="262" r="5" fill="#4a3728"/>
-            <ellipse cx="150" cy="268" rx="48" ry="7" fill="rgba(35,31,32,0.12)"/>
+            <circle cx="150" cy="38" r="5" fill="#4b2733"/>
+            <circle cx="150" cy="262" r="5" fill="#4b2733"/>
+            <ellipse cx="150" cy="268" rx="48" ry="7" fill="rgba(35,31,33,0.12)"/>
           </svg>
           <div class="product-badge badge-new">New</div>
           <div class="product-img-overlay">
@@ -1115,16 +1115,16 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg8" cx="50%" cy="40%" r="55%">
-                <stop offset="0%" stop-color="#ede5df"/>
-                <stop offset="100%" stop-color="#d8ccc4"/>
+                <stop offset="0%" stop-color="#eddfe4"/>
+                <stop offset="100%" stop-color="#d8c4cb"/>
               </radialGradient>
               <linearGradient id="prismFace" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#d4784a" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#c5653a" stop-opacity="0.7"/>
+                <stop offset="0%" stop-color="#d7477d" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#c8376f" stop-opacity="0.7"/>
               </linearGradient>
               <linearGradient id="prismSide" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#415f58" stop-opacity="0.85"/>
-                <stop offset="100%" stop-color="#506e64" stop-opacity="0.7"/>
+                <stop offset="0%" stop-color="#795c27" stop-opacity="0.85"/>
+                <stop offset="100%" stop-color="#8b6a33" stop-opacity="0.7"/>
               </linearGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg8)"/>
@@ -1134,17 +1134,17 @@
             <!-- Right face -->
             <polygon points="228,198 186,198 150,58" fill="url(#prismSide)"/>
             <!-- Base -->
-            <ellipse cx="150" cy="198" rx="78" ry="14" fill="#3d2e28" opacity="0.6"/>
+            <ellipse cx="150" cy="198" rx="78" ry="14" fill="#3e2730" opacity="0.6"/>
             <!-- Light refraction lines -->
-            <line x1="150" y1="198" x2="260" y2="248" stroke="rgba(197,101,58,0.3)" stroke-width="1.5"/>
-            <line x1="150" y1="198" x2="40" y2="262" stroke="rgba(65,95,88,0.3)" stroke-width="1.5"/>
-            <line x1="150" y1="198" x2="150" y2="270" stroke="rgba(241,231,225,0.2)" stroke-width="1.5"/>
+            <line x1="150" y1="198" x2="260" y2="248" stroke="rgba(200,55,111,0.3)" stroke-width="1.5"/>
+            <line x1="150" y1="198" x2="40" y2="262" stroke="rgba(121,92,39,0.3)" stroke-width="1.5"/>
+            <line x1="150" y1="198" x2="150" y2="270" stroke="rgba(241,225,231,0.2)" stroke-width="1.5"/>
             <!-- Face highlight -->
             <polygon points="150,70 220,192 150,192" fill="rgba(255,255,255,0.08)"/>
             <!-- Edge highlight -->
             <line x1="150" y1="58" x2="72" y2="198" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
             <!-- Shadow -->
-            <ellipse cx="150" cy="220" rx="72" ry="10" fill="rgba(35,31,32,0.14)"/>
+            <ellipse cx="150" cy="220" rx="72" ry="10" fill="rgba(35,31,33,0.14)"/>
             <!-- Small sparkle -->
             <circle cx="190" cy="108" r="3" fill="rgba(255,255,255,0.6)"/>
             <circle cx="186" cy="112" r="1.5" fill="rgba(255,255,255,0.4)"/>
@@ -1173,41 +1173,41 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg1" cx="50%" cy="40%" r="60%">
-                <stop offset="0%" stop-color="#e8ddd6"/>
-                <stop offset="100%" stop-color="#d4c8be"/>
+                <stop offset="0%" stop-color="#e8d6dc"/>
+                <stop offset="100%" stop-color="#d5bdc5"/>
               </radialGradient>
               <radialGradient id="lens1" cx="50%" cy="45%" r="50%">
-                <stop offset="0%" stop-color="#6a8a84"/>
-                <stop offset="60%" stop-color="#415f58"/>
-                <stop offset="100%" stop-color="#2a3d39"/>
+                <stop offset="0%" stop-color="#ac8948"/>
+                <stop offset="60%" stop-color="#795c27"/>
+                <stop offset="100%" stop-color="#4e3b19"/>
               </radialGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg1)"/>
             <!-- Camera body -->
-            <rect x="62" y="108" width="176" height="120" rx="8" fill="#3d2e28"/>
-            <rect x="62" y="108" width="176" height="28" rx="8" fill="#4a3728"/>
+            <rect x="62" y="108" width="176" height="120" rx="8" fill="#3e2730"/>
+            <rect x="62" y="108" width="176" height="28" rx="8" fill="#4b2733"/>
             <!-- Lens barrel -->
-            <circle cx="150" cy="182" r="42" fill="#2a2020"/>
+            <circle cx="150" cy="182" r="42" fill="#2a2025"/>
             <circle cx="150" cy="182" r="36" fill="url(#lens1)"/>
-            <circle cx="150" cy="182" r="26" fill="#1e2e2c"/>
-            <circle cx="150" cy="182" r="18" fill="#2a4040"/>
-            <circle cx="150" cy="182" r="10" fill="#0f1a1a"/>
+            <circle cx="150" cy="182" r="26" fill="#3b2d11"/>
+            <circle cx="150" cy="182" r="18" fill="#523f18"/>
+            <circle cx="150" cy="182" r="10" fill="#221907"/>
             <circle cx="143" cy="175" r="4" fill="rgba(255,255,255,0.18)"/>
             <!-- Viewfinder -->
-            <rect x="96" y="116" width="32" height="20" rx="3" fill="#2a2020"/>
-            <rect x="98" y="118" width="28" height="16" rx="2" fill="#1a3025"/>
+            <rect x="96" y="116" width="32" height="20" rx="3" fill="#2a2025"/>
+            <rect x="98" y="118" width="28" height="16" rx="2" fill="#402b0a"/>
             <!-- Shutter button -->
-            <circle cx="196" cy="120" r="7" fill="#c5653a"/>
-            <circle cx="196" cy="120" r="4" fill="#d4784a"/>
+            <circle cx="196" cy="120" r="7" fill="#c8376f"/>
+            <circle cx="196" cy="120" r="4" fill="#d7477d"/>
             <!-- Film advance lever -->
-            <rect x="212" y="112" width="18" height="6" rx="3" fill="#5f5553"/>
+            <rect x="212" y="112" width="18" height="6" rx="3" fill="#5f5358"/>
             <!-- Strap lug -->
-            <rect x="60" y="130" width="6" height="14" rx="3" fill="#5f5553"/>
-            <rect x="234" y="130" width="6" height="14" rx="3" fill="#5f5553"/>
+            <rect x="60" y="130" width="6" height="14" rx="3" fill="#5f5358"/>
+            <rect x="234" y="130" width="6" height="14" rx="3" fill="#5f5358"/>
             <!-- Brand text -->
-            <text x="150" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(241,231,225,0.35)" letter-spacing="3">35mm</text>
+            <text x="150" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(241,225,231,0.35)" letter-spacing="3">35mm</text>
             <!-- Shadow -->
-            <ellipse cx="150" cy="248" rx="72" ry="10" fill="rgba(35,31,32,0.15)"/>
+            <ellipse cx="150" cy="248" rx="72" ry="10" fill="rgba(35,31,33,0.15)"/>
           </svg>
           <div class="product-badge badge-bestseller">Bestseller</div>
           <div class="product-img-overlay">
@@ -1234,46 +1234,46 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg4" cx="50%" cy="40%" r="55%">
-                <stop offset="0%" stop-color="#e8ddd6"/>
-                <stop offset="100%" stop-color="#d4c8be"/>
+                <stop offset="0%" stop-color="#e8d6dc"/>
+                <stop offset="100%" stop-color="#d5bdc5"/>
               </radialGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg4)"/>
             <!-- Left film canister -->
             <g transform="translate(82,72)">
               <!-- Body -->
-              <rect x="-28" y="0" width="56" height="120" rx="6" fill="#231f20"/>
+              <rect x="-28" y="0" width="56" height="120" rx="6" fill="#231f21"/>
               <!-- Lid top -->
-              <ellipse cx="0" cy="0" rx="30" ry="8" fill="#3d3330"/>
+              <ellipse cx="0" cy="0" rx="30" ry="8" fill="#3d3035"/>
               <!-- Film slot -->
               <rect x="-6" y="-2" width="12" height="16" rx="2" fill="#1a1618"/>
               <!-- Label -->
-              <rect x="-22" y="24" width="44" height="72" rx="3" fill="#c5653a" opacity="0.9"/>
-              <text x="0" y="56" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="rgba(241,231,225,0.9)" letter-spacing="1">35mm</text>
-              <text x="0" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(241,231,225,0.7)" letter-spacing="1">ISO 400</text>
+              <rect x="-22" y="24" width="44" height="72" rx="3" fill="#c8376f" opacity="0.9"/>
+              <text x="0" y="56" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="rgba(241,225,231,0.9)" letter-spacing="1">35mm</text>
+              <text x="0" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(241,225,231,0.7)" letter-spacing="1">ISO 400</text>
               <!-- Base cap -->
-              <ellipse cx="0" cy="120" rx="30" ry="8" fill="#3d3330"/>
+              <ellipse cx="0" cy="120" rx="30" ry="8" fill="#3d3035"/>
               <!-- Ridges -->
               <rect x="-28" y="14" width="56" height="3" rx="1" fill="#181516"/>
               <rect x="-28" y="100" width="56" height="3" rx="1" fill="#181516"/>
             </g>
             <!-- Right film canister (mirrored) -->
             <g transform="translate(218,72)">
-              <rect x="-28" y="0" width="56" height="120" rx="6" fill="#231f20"/>
-              <ellipse cx="0" cy="0" rx="30" ry="8" fill="#3d3330"/>
+              <rect x="-28" y="0" width="56" height="120" rx="6" fill="#231f21"/>
+              <ellipse cx="0" cy="0" rx="30" ry="8" fill="#3d3035"/>
               <rect x="-6" y="-2" width="12" height="16" rx="2" fill="#1a1618"/>
-              <rect x="-22" y="24" width="44" height="72" rx="3" fill="#415f58" opacity="0.9"/>
-              <text x="0" y="56" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="rgba(241,231,225,0.9)" letter-spacing="1">35mm</text>
-              <text x="0" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(241,231,225,0.7)" letter-spacing="1">ISO 400</text>
-              <ellipse cx="0" cy="120" rx="30" ry="8" fill="#3d3330"/>
+              <rect x="-22" y="24" width="44" height="72" rx="3" fill="#795c27" opacity="0.9"/>
+              <text x="0" y="56" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="rgba(241,225,231,0.9)" letter-spacing="1">35mm</text>
+              <text x="0" y="70" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(241,225,231,0.7)" letter-spacing="1">ISO 400</text>
+              <ellipse cx="0" cy="120" rx="30" ry="8" fill="#3d3035"/>
               <rect x="-28" y="14" width="56" height="3" rx="1" fill="#181516"/>
               <rect x="-28" y="100" width="56" height="3" rx="1" fill="#181516"/>
             </g>
             <!-- Base plates -->
-            <rect x="42" y="192" width="80" height="10" rx="3" fill="#3d3330"/>
-            <rect x="178" y="192" width="80" height="10" rx="3" fill="#3d3330"/>
+            <rect x="42" y="192" width="80" height="10" rx="3" fill="#3d3035"/>
+            <rect x="178" y="192" width="80" height="10" rx="3" fill="#3d3035"/>
             <!-- Shadow -->
-            <ellipse cx="150" cy="220" rx="100" ry="10" fill="rgba(35,31,32,0.14)"/>
+            <ellipse cx="150" cy="220" rx="100" ry="10" fill="rgba(35,31,33,0.14)"/>
           </svg>
           <div class="product-badge badge-bestseller">Bestseller</div>
           <div class="product-img-overlay">
@@ -1299,29 +1299,29 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg7" cx="50%" cy="40%" r="55%">
-                <stop offset="0%" stop-color="#e8ddd6"/>
-                <stop offset="100%" stop-color="#d4c8be"/>
+                <stop offset="0%" stop-color="#e8d6dc"/>
+                <stop offset="100%" stop-color="#d5bdc5"/>
               </radialGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg7)"/>
             <!-- Plaque base -->
-            <rect x="56" y="112" width="188" height="78" rx="6" fill="#231f20"/>
-            <rect x="60" y="116" width="180" height="70" rx="4" fill="#2e2422"/>
+            <rect x="56" y="112" width="188" height="78" rx="6" fill="#231f21"/>
+            <rect x="60" y="116" width="180" height="70" rx="4" fill="#2e2227"/>
             <!-- Raised text "FAITH" -->
-            <text x="150" y="162" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="bold" fill="#c5653a" letter-spacing="6">FAITH</text>
+            <text x="150" y="162" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="bold" fill="#c8376f" letter-spacing="6">FAITH</text>
             <!-- Accent line -->
-            <rect x="80" y="172" width="140" height="1.5" fill="rgba(197,101,58,0.35)"/>
+            <rect x="80" y="172" width="140" height="1.5" fill="rgba(200,55,111,0.35)"/>
             <!-- Sub text -->
-            <text x="150" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(241,231,225,0.3)" letter-spacing="4">3:56AM PRODUCTION</text>
+            <text x="150" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="rgba(241,225,231,0.3)" letter-spacing="4">3:56AM PRODUCTION</text>
             <!-- Corner details -->
-            <circle cx="72" cy="124" r="4" fill="rgba(241,231,225,0.08)"/>
-            <circle cx="228" cy="124" r="4" fill="rgba(241,231,225,0.08)"/>
-            <circle cx="72" cy="180" r="4" fill="rgba(241,231,225,0.08)"/>
-            <circle cx="228" cy="180" r="4" fill="rgba(241,231,225,0.08)"/>
+            <circle cx="72" cy="124" r="4" fill="rgba(241,225,231,0.08)"/>
+            <circle cx="228" cy="124" r="4" fill="rgba(241,225,231,0.08)"/>
+            <circle cx="72" cy="180" r="4" fill="rgba(241,225,231,0.08)"/>
+            <circle cx="228" cy="180" r="4" fill="rgba(241,225,231,0.08)"/>
             <!-- Shadow -->
-            <ellipse cx="150" cy="205" rx="86" ry="9" fill="rgba(35,31,32,0.16)"/>
+            <ellipse cx="150" cy="205" rx="86" ry="9" fill="rgba(35,31,33,0.16)"/>
             <!-- Custom badge decoration -->
-            <path d="M150,88 L157,100 L171,100 L161,109 L164,123 L150,115 L136,123 L139,109 L129,100 L143,100 Z" fill="none" stroke="rgba(197,101,58,0.5)" stroke-width="1.5"/>
+            <path d="M150,88 L157,100 L171,100 L161,109 L164,123 L150,115 L136,123 L139,109 L129,100 L143,100 Z" fill="none" stroke="rgba(200,55,111,0.5)" stroke-width="1.5"/>
           </svg>
           <div class="product-badge badge-custom">Custom</div>
           <div class="product-img-overlay">
@@ -1347,41 +1347,41 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg3" cx="40%" cy="40%" r="60%">
-                <stop offset="0%" stop-color="#ede5df"/>
-                <stop offset="100%" stop-color="#d8ccc4"/>
+                <stop offset="0%" stop-color="#eddfe4"/>
+                <stop offset="100%" stop-color="#d8c4cb"/>
               </radialGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg3)"/>
             <!-- Three polaroid stands at different depths -->
             <!-- Back stand -->
             <g transform="translate(175,80) rotate(-8)">
-              <rect x="-28" y="0" width="56" height="66" rx="2" fill="#e8e0d8" stroke="#ccc0b4" stroke-width="1"/>
-              <rect x="-24" y="4" width="48" height="38" rx="1" fill="#b8a898"/>
-              <rect x="-28" y="66" width="56" height="18" rx="2" fill="#e8e0d8" stroke="#ccc0b4" stroke-width="1"/>
+              <rect x="-28" y="0" width="56" height="66" rx="2" fill="#e8d8dd" stroke="#cdb3bb" stroke-width="1"/>
+              <rect x="-24" y="4" width="48" height="38" rx="1" fill="#b997a2"/>
+              <rect x="-28" y="66" width="56" height="18" rx="2" fill="#e8d8dd" stroke="#cdb3bb" stroke-width="1"/>
               <!-- Stand leg -->
-              <rect x="-4" y="82" width="8" height="24" rx="2" fill="#ccc0b4"/>
-              <rect x="-12" y="104" width="24" height="4" rx="2" fill="#ccc0b4"/>
+              <rect x="-4" y="82" width="8" height="24" rx="2" fill="#cdb3bb"/>
+              <rect x="-12" y="104" width="24" height="4" rx="2" fill="#cdb3bb"/>
             </g>
             <!-- Middle stand -->
             <g transform="translate(115,95) rotate(5)">
-              <rect x="-28" y="0" width="56" height="66" rx="2" fill="#eee6de" stroke="#ccc0b4" stroke-width="1"/>
-              <rect x="-24" y="4" width="48" height="38" rx="1" fill="#8a9890"/>
-              <rect x="-28" y="66" width="56" height="18" rx="2" fill="#eee6de" stroke="#ccc0b4" stroke-width="1"/>
-              <rect x="-4" y="82" width="8" height="24" rx="2" fill="#ccc0b4"/>
-              <rect x="-12" y="104" width="24" height="4" rx="2" fill="#ccc0b4"/>
+              <rect x="-28" y="0" width="56" height="66" rx="2" fill="#eedee3" stroke="#cdb3bb" stroke-width="1"/>
+              <rect x="-24" y="4" width="48" height="38" rx="1" fill="#b09772"/>
+              <rect x="-28" y="66" width="56" height="18" rx="2" fill="#eedee3" stroke="#cdb3bb" stroke-width="1"/>
+              <rect x="-4" y="82" width="8" height="24" rx="2" fill="#cdb3bb"/>
+              <rect x="-12" y="104" width="24" height="4" rx="2" fill="#cdb3bb"/>
             </g>
             <!-- Front stand -->
             <g transform="translate(148,110)">
-              <rect x="-28" y="0" width="56" height="66" rx="2" fill="#f2ece6" stroke="#d4c8be" stroke-width="1"/>
-              <rect x="-24" y="4" width="48" height="38" rx="1" fill="#c5653a" opacity="0.7"/>
-              <rect x="-28" y="66" width="56" height="18" rx="2" fill="#f2ece6" stroke="#d4c8be" stroke-width="1"/>
-              <rect x="-4" y="82" width="8" height="28" rx="2" fill="#d4c8be"/>
-              <rect x="-14" y="108" width="28" height="4" rx="2" fill="#d4c8be"/>
+              <rect x="-28" y="0" width="56" height="66" rx="2" fill="#f2e6ea" stroke="#d5bdc5" stroke-width="1"/>
+              <rect x="-24" y="4" width="48" height="38" rx="1" fill="#c8376f" opacity="0.7"/>
+              <rect x="-28" y="66" width="56" height="18" rx="2" fill="#f2e6ea" stroke="#d5bdc5" stroke-width="1"/>
+              <rect x="-4" y="82" width="8" height="28" rx="2" fill="#d5bdc5"/>
+              <rect x="-14" y="108" width="28" height="4" rx="2" fill="#d5bdc5"/>
             </g>
             <!-- Shadow -->
-            <ellipse cx="150" cy="248" rx="90" ry="10" fill="rgba(35,31,32,0.12)"/>
+            <ellipse cx="150" cy="248" rx="90" ry="10" fill="rgba(35,31,33,0.12)"/>
             <!-- Label -->
-            <text x="150" y="268" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(74,55,40,0.4)" letter-spacing="2">SET OF 3</text>
+            <text x="150" y="268" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(75,39,51,0.4)" letter-spacing="2">SET OF 3</text>
           </svg>
           <div class="product-img-overlay">
             <button class="product-quick-add" onclick="addToCart(2); event.stopPropagation();">Quick Add</button>
@@ -1406,32 +1406,32 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg5" cx="50%" cy="35%" r="55%">
-                <stop offset="0%" stop-color="#ebe3dd"/>
-                <stop offset="100%" stop-color="#d8ccc4"/>
+                <stop offset="0%" stop-color="#ebdde2"/>
+                <stop offset="100%" stop-color="#d8c4cb"/>
               </radialGradient>
               <radialGradient id="lensTop" cx="50%" cy="40%" r="55%">
-                <stop offset="0%" stop-color="#506e64"/>
-                <stop offset="100%" stop-color="#2a3d39"/>
+                <stop offset="0%" stop-color="#8b6a33"/>
+                <stop offset="100%" stop-color="#4e3b19"/>
               </radialGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg5)"/>
             <!-- Main lens cylinder body -->
-            <ellipse cx="150" cy="90" rx="60" ry="16" fill="#2e2422"/>
-            <rect x="90" y="90" width="120" height="128" fill="#2e2422"/>
-            <ellipse cx="150" cy="218" rx="60" ry="16" fill="#231f20"/>
+            <ellipse cx="150" cy="90" rx="60" ry="16" fill="#2e2227"/>
+            <rect x="90" y="90" width="120" height="128" fill="#2e2227"/>
+            <ellipse cx="150" cy="218" rx="60" ry="16" fill="#231f21"/>
             <!-- Lens glass top -->
             <ellipse cx="150" cy="90" rx="50" ry="12" fill="url(#lensTop)"/>
-            <ellipse cx="150" cy="90" rx="38" ry="8" fill="#1e2e2c"/>
-            <ellipse cx="150" cy="90" rx="26" ry="5" fill="#253530"/>
-            <ellipse cx="150" cy="90" rx="14" ry="3" fill="#0f1a1a"/>
+            <ellipse cx="150" cy="90" rx="38" ry="8" fill="#3b2d11"/>
+            <ellipse cx="150" cy="90" rx="26" ry="5" fill="#433317"/>
+            <ellipse cx="150" cy="90" rx="14" ry="3" fill="#221907"/>
             <ellipse cx="143" cy="87" rx="5" ry="3" fill="rgba(255,255,255,0.2)"/>
             <!-- Aperture ring -->
-            <rect x="90" y="102" width="120" height="20" fill="#3d3330"/>
+            <rect x="90" y="102" width="120" height="20" fill="#3d3035"/>
             <rect x="90" y="104" width="120" height="2" fill="#181516"/>
             <rect x="90" y="120" width="120" height="2" fill="#181516"/>
             <!-- Focus ring markings -->
-            <rect x="90" y="128" width="120" height="28" fill="#312824"/>
-            <g fill="rgba(241,231,225,0.25)" font-family="Arial" font-size="7">
+            <rect x="90" y="128" width="120" height="28" fill="#312429"/>
+            <g fill="rgba(241,225,231,0.25)" font-family="Arial" font-size="7">
               <text x="98"  y="146">0.5</text>
               <text x="116" y="146">1</text>
               <text x="130" y="146">1.5</text>
@@ -1440,14 +1440,14 @@
               <text x="176" y="146">∞</text>
             </g>
             <!-- Bottom ring -->
-            <rect x="90" y="162" width="120" height="14" fill="#3d3330"/>
+            <rect x="90" y="162" width="120" height="14" fill="#3d3035"/>
             <!-- Pens inside (tops visible) -->
-            <rect x="126" y="60" width="6" height="32" rx="3" fill="#c5653a"/>
-            <rect x="138" y="52" width="6" height="40" rx="3" fill="#231f20"/>
-            <rect x="150" y="56" width="6" height="36" rx="3" fill="#415f58"/>
-            <rect x="162" y="62" width="6" height="30" rx="3" fill="#5f5553"/>
+            <rect x="126" y="60" width="6" height="32" rx="3" fill="#c8376f"/>
+            <rect x="138" y="52" width="6" height="40" rx="3" fill="#231f21"/>
+            <rect x="150" y="56" width="6" height="36" rx="3" fill="#795c27"/>
+            <rect x="162" y="62" width="6" height="30" rx="3" fill="#5f5358"/>
             <!-- Shadow -->
-            <ellipse cx="150" cy="248" rx="68" ry="10" fill="rgba(35,31,32,0.15)"/>
+            <ellipse cx="150" cy="248" rx="68" ry="10" fill="rgba(35,31,33,0.15)"/>
           </svg>
           <div class="product-img-overlay">
             <button class="product-quick-add" onclick="addToCart(4); event.stopPropagation();">Quick Add</button>
@@ -1472,27 +1472,27 @@
           <svg class="product-render" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="bg6" cx="50%" cy="50%" r="55%">
-                <stop offset="0%" stop-color="#ede5df"/>
-                <stop offset="100%" stop-color="#d8ccc4"/>
+                <stop offset="0%" stop-color="#eddfe4"/>
+                <stop offset="100%" stop-color="#d8c4cb"/>
               </radialGradient>
             </defs>
             <rect width="300" height="300" fill="url(#bg6)"/>
             <!-- Hexagon frame -->
-            <polygon points="150,52 224,93 224,175 150,216 76,175 76,93" fill="none" stroke="#231f20" stroke-width="10"/>
+            <polygon points="150,52 224,93 224,175 150,216 76,175 76,93" fill="none" stroke="#231f21" stroke-width="10"/>
             <!-- Inner photo area -->
-            <polygon points="150,68 210,102 210,168 150,202 90,168 90,102" fill="#b8a898" opacity="0.6"/>
+            <polygon points="150,68 210,102 210,168 150,202 90,168 90,102" fill="#b997a2" opacity="0.6"/>
             <!-- Photo content simulation -->
-            <polygon points="150,68 210,102 210,168 150,202 90,168 90,102" fill="#415f58" opacity="0.45"/>
-            <ellipse cx="150" cy="140" rx="28" ry="35" fill="rgba(241,231,225,0.3)"/>
-            <ellipse cx="150" cy="120" rx="14" ry="14" fill="rgba(241,231,225,0.25)"/>
+            <polygon points="150,68 210,102 210,168 150,202 90,168 90,102" fill="#795c27" opacity="0.45"/>
+            <ellipse cx="150" cy="140" rx="28" ry="35" fill="rgba(241,225,231,0.3)"/>
+            <ellipse cx="150" cy="120" rx="14" ry="14" fill="rgba(241,225,231,0.25)"/>
             <!-- Frame accent line -->
-            <polygon points="150,58 218,97 218,171 150,210 82,171 82,97" fill="none" stroke="#c5653a" stroke-width="1.5" opacity="0.5"/>
+            <polygon points="150,58 218,97 218,171 150,210 82,171 82,97" fill="none" stroke="#c8376f" stroke-width="1.5" opacity="0.5"/>
             <!-- Stand base -->
-            <rect x="134" y="214" width="32" height="6" rx="3" fill="#3d3330"/>
-            <rect x="140" y="220" width="20" height="22" rx="2" fill="#3d3330"/>
-            <rect x="132" y="240" width="36" height="6" rx="3" fill="#3d3330"/>
+            <rect x="134" y="214" width="32" height="6" rx="3" fill="#3d3035"/>
+            <rect x="140" y="220" width="20" height="22" rx="2" fill="#3d3035"/>
+            <rect x="132" y="240" width="36" height="6" rx="3" fill="#3d3035"/>
             <!-- Shadow -->
-            <ellipse cx="150" cy="258" rx="56" ry="8" fill="rgba(35,31,32,0.13)"/>
+            <ellipse cx="150" cy="258" rx="56" ry="8" fill="rgba(35,31,33,0.13)"/>
           </svg>
           <div class="product-img-overlay">
             <button class="product-quick-add" onclick="addToCart(5); event.stopPropagation();">Quick Add</button>
@@ -1708,9 +1708,9 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Matte Black', color: '#231f20' },
-          { name: 'Warm White',  color: '#f1e7e1' },
-          { name: 'Bark Brown',  color: '#4a3728' },
+          { name: 'Matte Black', color: '#231f21' },
+          { name: 'Warm White',  color: '#f1e1e7' },
+          { name: 'Bark Brown',  color: '#4b2733' },
         ],
       },
       {
@@ -1725,9 +1725,9 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Matte Black', color: '#231f20' },
-          { name: 'Natural',     color: '#e8ddd6' },
-          { name: 'Forest',      color: '#415f58' },
+          { name: 'Matte Black', color: '#231f21' },
+          { name: 'Natural',     color: '#e8d6dc' },
+          { name: 'Forest',      color: '#795c27' },
         ],
       },
       {
@@ -1742,8 +1742,8 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Cream White', color: '#f1e7e1' },
-          { name: 'Matte Black', color: '#231f20' },
+          { name: 'Cream White', color: '#f1e1e7' },
+          { name: 'Matte Black', color: '#231f21' },
         ],
       },
       {
@@ -1758,8 +1758,8 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Amber Label',  color: '#c5653a' },
-          { name: 'Forest Label', color: '#415f58' },
+          { name: 'Amber Label',  color: '#c8376f' },
+          { name: 'Forest Label', color: '#795c27' },
         ],
       },
       {
@@ -1774,8 +1774,8 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Matte Black', color: '#231f20' },
-          { name: 'Bark Brown',  color: '#4a3728' },
+          { name: 'Matte Black', color: '#231f21' },
+          { name: 'Bark Brown',  color: '#4b2733' },
         ],
       },
       {
@@ -1790,8 +1790,8 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Natural',     color: '#e8ddd6' },
-          { name: 'Matte Black', color: '#231f20' },
+          { name: 'Natural',     color: '#e8d6dc' },
+          { name: 'Matte Black', color: '#231f21' },
         ],
       },
       {
@@ -1806,9 +1806,9 @@
           { label: 'Ships In',    val: '7–10 business days' },
         ],
         finishes: [
-          { name: 'Amber Accent',  color: '#c5653a' },
-          { name: 'Forest Accent', color: '#415f58' },
-          { name: 'Cream Accent',  color: '#f1e7e1' },
+          { name: 'Amber Accent',  color: '#c8376f' },
+          { name: 'Forest Accent', color: '#795c27' },
+          { name: 'Cream Accent',  color: '#f1e1e7' },
         ],
       },
       {
@@ -1824,8 +1824,8 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Matte White', color: '#f5f0e8' },
-          { name: 'Matte Black', color: '#231f20' },
+          { name: 'Matte White', color: '#f5e8eb' },
+          { name: 'Matte Black', color: '#231f21' },
         ],
       },
       {
@@ -1841,8 +1841,8 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Matte White', color: '#f5f0e8' },
-          { name: 'Matte Black', color: '#231f20' },
+          { name: 'Matte White', color: '#f5e8eb' },
+          { name: 'Matte Black', color: '#231f21' },
         ],
       },
       {
@@ -1857,9 +1857,9 @@
           { label: 'Ships In',    val: '5–7 business days' },
         ],
         finishes: [
-          { name: 'Amber',       color: '#c5653a' },
-          { name: 'Clear Frost', color: '#dde8e4' },
-          { name: 'Smoke',       color: '#5f5553' },
+          { name: 'Amber',       color: '#c8376f' },
+          { name: 'Clear Frost', color: '#f2e6d3' },
+          { name: 'Smoke',       color: '#5f5358' },
         ],
       },
     ];
@@ -1993,7 +1993,7 @@
           const sw = document.createElement('div');
           sw.className = 'pdp-swatch' + (i === 0 ? ' selected' : '');
           sw.style.background = f.color;
-          sw.style.border = f.color.toLowerCase() === '#f1e7e1' || f.color.toLowerCase() === '#e8ddd6' || f.color.toLowerCase() === '#dde8e4' ? '2px solid rgba(35,31,32,0.2)' : '2px solid transparent';
+          sw.style.border = f.color.toLowerCase() === '#f1e1e7' || f.color.toLowerCase() === '#e8d6dc' || f.color.toLowerCase() === '#f2e6d3' ? '2px solid rgba(35,31,33,0.2)' : '2px solid transparent';
           sw.innerHTML = `<span class="pdp-swatch-label">${f.name}</span>`;
           sw.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -2287,7 +2287,7 @@
     (function lerp(){ rx+=(mx-rx)*0.11; ry+=(my-ry)*0.11; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(lerp); })();
     document.querySelectorAll('a,button,.product-card').forEach(el=>{
       el.addEventListener('mouseenter',()=>{ dot.style.transform='translate(-50%,-50%) scale(1.5)'; dot.querySelector('svg').style.stroke='var(--clay)'; ring.style.transform='translate(-50%,-50%) scale(1.4)'; ring.style.borderColor='var(--umber)'; });
-      el.addEventListener('mouseleave',()=>{ dot.style.transform='translate(-50%,-50%) scale(1)'; dot.querySelector('svg').style.stroke='var(--umber)'; ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.borderColor='rgba(65,95,88,0.45)'; });
+      el.addEventListener('mouseleave',()=>{ dot.style.transform='translate(-50%,-50%) scale(1)'; dot.querySelector('svg').style.stroke='var(--umber)'; ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.borderColor='rgba(121,92,39,0.45)'; });
     });
 
     // ── Scroll progress ──

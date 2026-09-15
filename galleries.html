@@ -10,20 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --cream: #f5f0e8;
-      --sand: #e8ddc8;
-      --taupe: #c4b49a;
-      --clay: #a8896a;
-      --umber: #7a5c42;
-      --bark: #4a3728;
-      --warm-white: #faf8f4;
-      --sage: #9aaa8c;
-      --amber: #c8652e;
-      --tangerine: #e07a42;
-      --forest: #4a6e45;
-      --moss: #7aaa6a;
-      --navy: #1a2744;
-      --navy-mid: #243358;
+      --cream: #f5e8eb;
+      --sand: #e9c7d0;
+      --taupe: #c599a5;
+      --clay: #aa687d;
+      --umber: #7b4154;
+      --bark: #4b2733;
+      --warm-white: #faf4f5;
+      --sage: #c89b6e;
+      --amber: #cc2a66;
+      --tangerine: #e43e7b;
+      --forest: #8f5d24;
+      --moss: #da8e3a;
+      --navy: #441a32;
+      --navy-mid: #582441;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,13 +66,13 @@
       stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 1px 3px rgba(74,55,40,0.35));
+      filter: drop-shadow(0 1px 3px rgba(75,39,51,0.35));
       transition: stroke 0.2s ease;
     }
     #cursor-ring {
       position: fixed;
       width: 52px; height: 52px;
-      border: 1px solid rgba(168,137,106,0.45);
+      border: 1px solid rgba(170,104,125,0.45);
       border-radius: 50%;
       pointer-events: none;
       z-index: 99998;
@@ -97,11 +97,11 @@
       top: 0;
       z-index: 1000;
       background: var(--warm-white);
-      border-bottom: 1px solid rgba(74,55,40,0.1);
-      box-shadow: 0 2px 16px rgba(74,55,40,0.06);
+      border-bottom: 1px solid rgba(75,39,51,0.1);
+      box-shadow: 0 2px 16px rgba(75,39,51,0.06);
       transition: box-shadow 0.4s ease;
     }
-    .site-header.scrolled { box-shadow: 0 4px 24px rgba(74,55,40,0.1); }
+    .site-header.scrolled { box-shadow: 0 4px 24px rgba(75,39,51,0.1); }
     .top-strip {
       height: 4px;
       background: linear-gradient(90deg, var(--amber) 0%, var(--tangerine) 30%, var(--moss) 60%, var(--forest) 100%);
@@ -194,7 +194,7 @@
     .page-hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(20,12,8,0.6) 0%, rgba(20,12,8,0.75) 100%);
+      background: linear-gradient(to bottom, rgba(20,8,12,0.6) 0%, rgba(20,8,12,0.75) 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -268,14 +268,14 @@
     .gallery-card-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(20,12,8,0.82) 0%, rgba(20,12,8,0.15) 55%, transparent 100%);
+      background: linear-gradient(to top, rgba(20,8,12,0.82) 0%, rgba(20,8,12,0.15) 55%, transparent 100%);
       display: flex;
       align-items: flex-end;
       padding: 42px 44px;
       transition: background 0.5s ease;
     }
     .gallery-card:hover .gallery-card-overlay {
-      background: linear-gradient(to top, rgba(20,12,8,0.9) 0%, rgba(20,12,8,0.3) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(20,8,12,0.9) 0%, rgba(20,8,12,0.3) 60%, transparent 100%);
     }
 
     .gallery-card-content { width: 100%; }
@@ -382,7 +382,7 @@
       gap: 64px;
       margin-bottom: 64px;
       padding-bottom: 48px;
-      border-bottom: 1px solid rgba(196,180,154,0.15);
+      border-bottom: 1px solid rgba(197,153,165,0.15);
     }
     .footer-brand-logo {
       font-family: 'Cormorant Garamond', serif;
@@ -637,7 +637,7 @@
       el.addEventListener('mouseleave', () => {
         dot.style.transform  = 'translate(-50%,-50%) scale(1)';
         ring.style.transform = 'translate(-50%,-50%) scale(1)';
-        ring.style.borderColor = 'rgba(168,137,106,0.45)';
+        ring.style.borderColor = 'rgba(170,104,125,0.45)';
       });
     });
 
